@@ -1,0 +1,11 @@
+ID;name;country_code;birthDate;alive;deathDate;
+ac2bd911-b356-4a9c-8eda-4fa53c37d553;John Doe;US;1980-05-15;true;;
+c6279534-5dda-4009-b8ee-0ddc0748a133;Jane Smith;CA;1975-09-22;true;;
+50485f74-aa9c-4051-9002-1bced14c57b9;David Johnson;UK;1988-03-10;false;2022-07-18;
+4726d7a4-2f21-4d29-90d6-c5424359b1ec;Emily White;AU;1995-12-03;false;2020-05-20;
+4f52576d-0143-470d-9482-65fe2ab79a06;Michael Brown;IN;1982-11-28;true;;
+654b2982-0db7-4f5f-94ed-32899c0d9e89;Sophia Garcia;FR;1970-08-14;true;;
+b8246798-0e9d-4a74-a8cb-799eb61cf188;Daniel Martinez;CA;1990-02-01;false;2018-10-05;
+110950cd-fcd5-4e3a-ba9b-9874065bdb7e;Olivia Robinson;JP;1987-06-19;true;;
+c1bbcc79-067d-463e-a6c7-61f9f2b21532;Aarav Patel;IN;1985-01-08;false;2015-12-12;
+d35fd106-65b0-4d64-a189-a551ab70ba12;Sara Kumar;IN;1992-04-30;true;;
