@@ -2,12 +2,12 @@ using { Currency, Country, cuid } from '@sap/cds/common';
 
 namespace msg.dstore.books;
 
-entity Book: cuid {
+entity Books: cuid {
 	title : String;
 	description : String;
-	publisher : association to one Publisher;
-	author : association to one Author;
-	genre : association to one Genre;
+	publisher : association to one Publishers;
+	author : association to one Authors;
+	genre : association to one Genres;
 	price : Decimal;
 	currency : Currency;
 	pages : Integer;
@@ -18,22 +18,23 @@ entity Book: cuid {
 	contentType: String @Core.IsMediaType;
 };
 
-entity Publisher: cuid{
+entity Publishers: cuid{
 	name : String;
 	address : String;
-	books : association to many Book;
+	books : association to many Books on books.publisher = $self;
 	country : Country;
 };
 
-entity Author: cuid{
+entity Authors: cuid{
 	name : String;
 	country: Country;
 	birthDate: Date;
 	alive : Boolean;
 	deathDate: Date;
-	books: association to many Book
+	books: association to many Books on books.author = $self;
 };
 
-entity Genre: cuid{
-	name: String
+entity Genres: cuid{
+	name: String;
+	books: association to many Books on books.genre = $self;
 };
