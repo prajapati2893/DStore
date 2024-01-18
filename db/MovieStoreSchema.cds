@@ -2,33 +2,39 @@ using {cuid, Country} from '@sap/cds/common';
 
 namespace msg.dstore.movies;
 
-entity Movie: cuid{
+entity Movies: cuid{
     title: String;
     description: String;
-    director: association to one Director;
-    starcast: association to many Actor;
-    genre: association to one Genre;
+    director: association to one Directors;
+    actors: composition of many LinkTable on actors.movie = $self;
+
+    genre: association to one Genres;
     releaseDate: Date;
     duration: Integer;
     posterImage: LargeBinary @Core.MediaType: posterImageType;
     posterImageType: String @Core.IsMediaType;
 }
 
-entity Director: cuid{
+// To implement many-to-many relationship between Movies and Actors.
+entity LinkTable{
+    key movie: association to Movies;
+    key actor: association to Actors;
+}
+entity Directors: cuid{
     name: String;
     birthDate: Date;
     country: Country;
-    movies: association to many Movie on movies.director = $self;
+    movies: association to many Movies on movies.director = $self;
 }
 
-entity Actor: cuid{
+entity Actors: cuid{
     name: String;
     birthDate: String;
     country: Country;
-    movies: association to many Movie on movies.starcast = $self;
+    movies: Composition of many LinkTable on movies.actor = $self;
 }
 
-entity Genre: cuid{
+entity Genres: cuid{
     name: String;
-    movies : Association to many Movie on movies.genre = $self;
+    movies : Association to many Movies on movies.genre = $self;
 }

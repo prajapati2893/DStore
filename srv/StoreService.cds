@@ -10,9 +10,9 @@ service BookStoreService{
 }
 
 service MovieStoreService {
-    entity Movies as projection on movieSchema.Movie;
-    entity Actors as projection on movieSchema.Actor;
-    entity Directors as projection on movieSchema.Director;
+    entity Movies as projection on movieSchema.Movies;
+    entity Actors as projection on movieSchema.Actors;
+    entity Directors as projection on movieSchema.Directors;
     @readonly
-    entity Genre as projection on movieSchema.Genre;
+    entity Genre as projection on movieSchema.Genres;
 }
