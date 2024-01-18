@@ -18,16 +18,17 @@ entity Director: cuid{
     name: String;
     birthDate: Date;
     country: Country;
-    movies: association to many Movie;
+    movies: association to many Movie on movies.director = $self;
 }
 
 entity Actor: cuid{
     name: String;
     birthDate: String;
     country: Country;
-    works: association to many Movie;
+    movies: association to many Movie on movies.starcast = $self;
 }
 
 entity Genre: cuid{
-    name: String
+    name: String;
+    movies : Association to many Movie on movies.genre = $self;
 }

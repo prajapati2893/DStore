@@ -1,0 +1,12 @@
+
+ID,title,description,director_ID,starcast_ID,genre_ID,releaseDate,duration,posterImage,posterImageType
+e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,Inception,Sci-Fi thriller directed by Christopher Nolan,27bba48e-050a-4a12-b27c-4bfb7ea25d45,"60f08d9b-7319-4d56-9343-9f422fd56727,a9a1c477-8942-4c0f-8a41-987e2db477e0",c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce,2010-07-16,148,null,null
+53b35636-1f85-4c25-bb07-f510fd2d6a2d,Pulp Fiction,Crime film directed by Quentin Tarantino,eb3c143a-9a44-4d23-8a24-86b9e21fda9b,"a78617d2-5e19-4d4f-8362-4cb7eb5ee29e",eb3c143a-9a44-4d23-8a24-86b9e21fda9b,1994-10-14,154,null,null
+0b47c69e-9b13-496b-9b14-8a4b62f2a35d,Spirited Away,Animated fantasy film directed by Hayao Miyazaki,c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce,"4ee3bcf7-45f2-4f0b-92b1-1ef692f22864",27bba48e-050a-4a12-b27c-4bfb7ea25d45,2001-07-20,125,null,null
+7e297935-5ea5-43a2-a619-6bb93eaab3a8,The Dark Knight,Superhero film directed by Christopher Nolan,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"a9a1c477-8942-4c0f-8a41-987e2db477e0","365550b3-d239-4f68-b4b1-24a9969d8505",2008-07-18,152,null,null
+c9d8afac-d059-41db-88cd-cc165cb3b601,Forrest Gump,Drama film directed by Robert Zemeckis,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"02ff81f8-2eae-4ac3-bf1c-e0ad42863dd5","f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d",1994-07-06,142,null,null
+6f1867e0-88a9-4d36-8e50-cb741dd8efac,The Shawshank Redemption,Drama film directed by Frank Darabont,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"f3d50d80-d3b0-4f92-85d3-1e06a1a092bc","f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d",1994-09-23,142,null,null
+dd7b6097-bb58-4cda-89e2-55bc4c7d7741,The Matrix,Sci-Fi film directed by Lana and Lilly Wachowski,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"fd179a11-4422-4ba6-8f61-08667d2ea6d7,f3d50d80-d3b0-4f92-85d3-1e06a1a092bc","c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce",1999-03-31,136,null,null
+365550b3-d239-4f68-b4b1-24a9969d8505,The Godfather,Crime film directed by Francis Ford Coppola,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"88b0c826-92a9-4b04-a42e-9f81b9f0e94b","eb3c143a-9a44-4d23-8a24-86b9e21fda9b",1972-03-24,175,null,null
+bf150120-8b4c-42e1-8bc7-e8f0b9078ab5,The Lord of the Rings: The Return of the King,Fantasy film directed by Peter Jackson,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"29f003f9-9d21-4d9a-a647-1eab7889b635","bf150120-8b4c-42e1-8bc7-e8f0b9078ab5",2003-12-17,201,null,null
+f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d,The Dark Knight Rises,Superhero film directed by Christopher Nolan,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"ad60b2e3-6c45-44a3-8cf4-6e6a21856f2e","365550b3-d239-4f68-b4b1-24a9969d8505",2012-07-20,165,null,null
