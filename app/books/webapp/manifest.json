@@ -117,7 +117,8 @@
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "columns": {
                                         "DataField::title": {
-                                            "availability": "Default"
+                                            "availability": "Default",
+                                            "width": "auto"
                                         }
                                     }
                                 }
@@ -131,18 +132,22 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "navToListOnSave": true,
                             "editableHeaderContent": false,
                             "contextPath": "/Books",
+                            "sectionLayout": "Page",
                             "content": {
                                 "header": {
                                     "actions": {
                                         "back": {
-                                            "visible": false
+                                            "press": "msg.dstore.books.books.controller.objectPage.onBack",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "back"
                                         }
                                     }
                                 }
-                            },
-                            "sectionLayout": "Page"
+                            }
                         }
                     }
                 }
