@@ -2,6 +2,7 @@ using { msg.dstore.books as bookSchema} from '../db/BookStoreSchema';
 using {msg.dstore.movies as movieSchema} from '../db/MovieStoreSchema';
 
 service BookStoreService{
+    @odata.draft.enabled
     entity Books as projection on bookSchema.Books;
     entity Authors as projection on bookSchema.Authors;
     entity Publishers as projection on bookSchema.Publishers;
