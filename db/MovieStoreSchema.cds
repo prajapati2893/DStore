@@ -7,7 +7,6 @@ entity Movies: cuid{
     description: String;
     director: association to one Directors;
     actors: composition of many LinkTable on actors.movie = $self;
-
     genre: association to one Genres;
     releaseDate: Date;
     duration: Integer;
