@@ -117,7 +117,8 @@
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "columns": {
                                         "DataField::title": {
-                                            "availability": "Default"
+                                            "availability": "Default",
+                                            "width": "auto"
                                         }
                                     }
                                 }
@@ -142,6 +143,9 @@
                                     }
                                 }
                             },
+                            "navToListOnSave": true,
+                            "editableHeaderContent": false,
+                            "contextPath": "/Books",
                             "sectionLayout": "Page"
                         }
                     }
