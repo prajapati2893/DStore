@@ -11,9 +11,9 @@ service BookStoreService{
 }
 
 service MovieStoreService {
+    @odata.draft.enabled
     entity Movies as projection on movieSchema.Movies;
     entity Actors as projection on movieSchema.Actors;
     entity Directors as projection on movieSchema.Directors;
-    @readonly
     entity Genre as projection on movieSchema.Genres;
 }

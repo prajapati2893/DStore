@@ -132,6 +132,17 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/Books",
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "back": {
+                                            "visible": false
+                                        }
+                                    }
+                                }
+                            },
                             "navToListOnSave": true,
                             "editableHeaderContent": false,
                             "contextPath": "/Books",
