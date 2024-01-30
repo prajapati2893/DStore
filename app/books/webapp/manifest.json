@@ -45,7 +45,7 @@
     },
     "sap.ui5": {
         "flexEnabled": true,
-        "dependencies": {
+                "dependencies": {
             "minUI5Version": "1.120.4",
             "libs": {
                 "sap.m": {},
@@ -135,19 +135,7 @@
                             "navToListOnSave": true,
                             "editableHeaderContent": false,
                             "contextPath": "/Books",
-                            "sectionLayout": "Page",
-                            "content": {
-                                "header": {
-                                    "actions": {
-                                        "back": {
-                                            "press": "msg.dstore.books.books.controller.objectPage.onBack",
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "back"
-                                        }
-                                    }
-                                }
-                            }
+                            "sectionLayout": "Page"
                         }
                     }
                 }
