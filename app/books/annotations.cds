@@ -212,12 +212,16 @@ annotate service.Genre with {
 };
 
 annotate service.Books with @(
+<<<<<<< HEAD
     LineItem: [ {
             Type: UI.DataFieldForAction,
             Label: 'Back',
             Value: 'my.namespace.BackAction'
         }],
     UI.HeaderFacets     : [],
+=======
+        UI.HeaderFacets     : [],
+>>>>>>> fb8df72 (updates)
     UI.FieldGroup #Title: {
         $Type: 'UI.FieldGroupType',
         Data : [],

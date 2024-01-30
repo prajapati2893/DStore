@@ -134,6 +134,7 @@
                         "settings": {
                             "editableHeaderContent": false,
                             "contextPath": "/Books",
+<<<<<<< HEAD
                             "content": {
                                 "header": {
                                     "actions": {
@@ -146,6 +147,8 @@
                             "navToListOnSave": true,
                             "editableHeaderContent": false,
                             "contextPath": "/Books",
+=======
+>>>>>>> fb8df72 (updates)
                             "sectionLayout": "Page"
                         }
                     }
