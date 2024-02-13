@@ -114,18 +114,25 @@
         {
           "name": "RouteMovies",
           "pattern": ":?query:",
-          "target": [
-            "TargetMovies"
-          ]
+          "target": "moviesList"
+        },
+        {
+          "name": "movie",
+          "pattern": "movie/{movieId}",
+          "target": "movie"
         }
       ],
       "targets": {
-        "TargetMovies": {
+        "moviesList": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Movies",
-          "viewName": "Movies"
+          "viewId": "MoviesList",
+          "viewName": "MoviesList"
+        },
+        "movie":{
+          "viewId": "movie",
+          "viewName": "Movie"
         }
       }
     },

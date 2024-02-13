@@ -1,0 +1,20 @@
+<mvc:View controllerName="movies.controller.Movie"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+
+    <Page id="page"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        <content>
+            <Panel id="panel">
+                <headerToolbar>
+                    <Toolbar id="toolbar">
+                        <Title id="title" text="{movieId}"></Title>
+                    </Toolbar>
+                </headerToolbar>
+                <Text id="text" text="Text"></Text>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>
