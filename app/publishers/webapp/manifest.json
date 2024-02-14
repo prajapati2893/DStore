@@ -1,19 +1,19 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "msg.dstore.books.books",
+    "id": "publishers",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
       "version": "0.0.1"
     },
-    "title": "{{BookStore}}",
+    "title": "{{appTitle}}",
     "description": "{{appDescription}}",
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.12.1",
-      "toolsId": "5614447d-d601-49c0-aff5-19832c08f7e5"
+      "toolsId": "cd659dbd-fec5-437c-8345-8111187e4f47"
     },
     "dataSources": {
       "mainService": {
@@ -46,13 +46,12 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.120.4",
+      "minUI5Version": "1.120.6",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
         "sap.ushell": {},
-        "sap.fe.templates": {},
-        "sap.f": {}
+        "sap.fe.templates": {}
       }
     },
     "contentDensities": {
@@ -63,7 +62,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "msg.dstore.books.books.i18n.i18n"
+          "bundleName": "publishers.i18n.i18n"
         }
       },
       "": {
@@ -88,43 +87,65 @@
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "BooksList",
-          "target": "BooksList"
+          "name": "PublishersList",
+          "target": "PublishersList"
         },
         {
-          "pattern": "Books({key}):?query:",
+          "pattern": "Publishers({key}):?query:",
+          "name": "PublishersObjectPage",
+          "target": "PublishersObjectPage"
+        },
+        {
+          "pattern": "Publishers({key})/books({key2}):?query:",
           "name": "BooksObjectPage",
           "target": "BooksObjectPage"
         }
       ],
       "targets": {
-        "BooksList": {
+        "PublishersList": {
           "type": "Component",
-          "id": "BooksList",
+          "id": "PublishersList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Books",
+              "contextPath": "/Publishers",
               "variantManagement": "Page",
               "navigation": {
-                "Books": {
+                "Publishers": {
                   "detail": {
-                    "route": "BooksObjectPage"
+                    "route": "PublishersObjectPage"
                   }
                 }
               },
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "columns": {
-                    "DataField::title": {
+                    "DataField::name": {
                       "availability": "Default",
                       "width": "auto"
                     }
                   }
                 }
               },
-              "initialLoad": "Enabled",
-              "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
+              "initialLoad": "Enabled"
+            }
+          }
+        },
+        "PublishersObjectPage": {
+          "type": "Component",
+          "id": "PublishersObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Publishers",
+              "navigation": {
+                "books": {
+                  "detail": {
+                    "route": "BooksObjectPage"
+                  }
+                }
+              }
             }
           }
         },
@@ -134,10 +155,8 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "navToListOnSave": true,
               "editableHeaderContent": false,
-              "contextPath": "/Books",
-              "sectionLayout": "Page"
+              "contextPath": "/Publishers/books"
             }
           }
         }
