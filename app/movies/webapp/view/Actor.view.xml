@@ -1,0 +1,74 @@
+<mvc:View
+	height="100%"
+	controllerName="movies.controller.Actor"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page
+		id="idPage"
+		title="{name}"
+		class= "sapUiResponsivePadding--header"
+        showNavButton="true"
+        navButtonPress="onNavBack" >
+		<!-- this CSS class add a standard spacing to all the page content -->
+
+		<content>
+			<ObjectHeader id="_IDGenObjectHeader1"
+				title=""
+				backgroundDesign="Solid">
+				<attributes>
+					<ObjectAttribute id="_IDGenObjectAttribute1" title="Name" text="{name}" />
+					<ObjectAttribute id="_IDGenObjectAttribute2" title="Birth Date" text="{birthDate}" />
+					<ObjectAttribute id="_IDGenObjectAttribute3" title="Country" text="{country/name}" />
+				</attributes>
+			</ObjectHeader>
+            <Table id="_IDOtherMovies" width="auto" class="sapUiResponsiveMargin"
+            items="{
+					path: 'movies',
+                    parameters:{
+                        expand: 'movie'
+                    }
+				}"
+                itemPress="onMovieItemPressed">
+                <headerToolbar>
+					<OverflowToolbar id="_IDGenOverflowToolbar2">
+						<content>
+							<Title id="_IDGenTitle2" text="Movies by {name}" level="H2"/>
+							<ToolbarSpacer id="_IDGenToolbarSpacer3" />
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+                 <columns>
+					<Column id="_IDGenColumnOM1">
+						<Text id="_IDGenTextOM1" text="Title" />
+					</Column>
+					<Column id="_IDGenColumnOM2">
+						<Text id="_IDGenTextOM2" text="Director" />
+					</Column>
+                    <Column id="_IDGenColumnOM3">
+						<Text id="_IDGenTextOM3" text="Genre" />
+					</Column>
+                    <Column id="_IDGenColumnOM4">
+						<Text id="_IDGenTextOM4" text="Release Date" />
+					</Column>
+				</columns>
+                <items>
+					<ColumnListItem id="_IDGenColumnListItemOM1" vAlign="Middle" type="Active">
+						<cells>
+							<Text id="_IDGenTextOM5"
+								text="{movie/title}" />
+                            <Text id="_IDGenTextOM0"
+								text="{movie/director/name}" />
+							<Text id="_IDGenTextOM6"
+								text="{movie/genre/name}" />
+                            <Text id="_IDGenTextOM7"
+								text="{movie/releaseDate}" />
+						</cells>
+					</ColumnListItem>
+                </items>
+            </Table>
+			
+		</content>
+	</Page>
+</mvc:View>

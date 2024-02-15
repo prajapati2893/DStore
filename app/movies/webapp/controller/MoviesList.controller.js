@@ -10,6 +10,7 @@ sap.ui.define([
                 
             },
             onItemPress: function(event){
+                console.log('pressed')
                 let item = event.getParameter("listItem")// get item which fired press event
                 let context = item.getBindingContext()
                 this.getRouter().navTo("movie",{

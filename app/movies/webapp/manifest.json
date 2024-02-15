@@ -112,14 +112,24 @@
       },
       "routes": [
         {
-          "name": "RouteMovies",
-          "pattern": ":?query:",
+          "name": "Home",
+          "pattern": "",
           "target": "moviesList"
         },
         {
           "name": "movie",
           "pattern": "movie/{movieId}",
           "target": "movie"
+        },
+        {
+          "name": "actor",
+          "pattern": "actor/{actorId}",
+          "target": "actor"
+        },
+        {
+          "name": "director",
+          "pattern": "director/{directorId}",
+          "target": "director"
         }
       ],
       "targets": {
@@ -133,6 +143,14 @@
         "movie":{
           "viewId": "movie",
           "viewName": "Movie"
+        },
+        "actor":{
+          "viewId": "actor",
+          "viewName": "Actor"
+        },
+        "director":{
+          "viewId": "director",
+          "viewName": "Director"
         }
       }
     },

@@ -14,6 +14,8 @@
 						path: 'title'
 					}
 				}"
+				width="auto"
+				class="sapUiResponsiveMargin"
 				itemPress="onItemPress">
 				<headerToolbar>
 					<OverflowToolbar id="_IDGenOverflowToolbar1">
