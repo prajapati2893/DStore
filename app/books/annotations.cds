@@ -134,7 +134,6 @@ annotate service.Genre with {
 };
 
 annotate service.Books with @(
-<<<<<<< HEAD
     LineItem: [ {
             Type: UI.DataFieldForAction,
             Label: 'Back',
