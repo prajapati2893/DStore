@@ -13,7 +13,7 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.12.1",
-      "toolsId": "d01d9e6b-b21b-4f48-91cb-36739b0ff1ad"
+      "toolsId": "940fd8d9-aeb0-40e5-aaad-9a3dde69face"
     },
     "dataSources": {
       "mainService": {
@@ -46,7 +46,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.120.6",
+      "minUI5Version": "1.120.8",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -94,6 +94,11 @@
           "pattern": "Authors({key}):?query:",
           "name": "AuthorsObjectPage",
           "target": "AuthorsObjectPage"
+        },
+        {
+          "pattern": "Authors({key})/books({key2}):?query:",
+          "name": "BooksObjectPage",
+          "target": "BooksObjectPage"
         }
       ],
       "targets": {
@@ -121,7 +126,8 @@
                     }
                   }
                 }
-              },"initialLoad": "Enabled"
+              },
+              "initialLoad": "Enabled"
             }
           }
         },
@@ -133,7 +139,24 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/Authors",
-              "navigation": {}
+              "navigation": {
+                "books": {
+                  "detail": {
+                    "route": "BooksObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "BooksObjectPage": {
+          "type": "Component",
+          "id": "BooksObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Authors/books"
             }
           }
         }

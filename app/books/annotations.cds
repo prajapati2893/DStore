@@ -1,4 +1,5 @@
 using BookStoreService as service from '../../srv/StoreService';
+using from '../../db/BookStoreSchema.cds';
 
 annotate service.Books with @(UI.LineItem: [
     {
@@ -100,7 +101,7 @@ annotate service.Books with @(UI.LineItem: [
 }
 
 annotate service.Books with @(
-    UI.FieldGroup #GeneratedGroup1: {
+    UI.FieldGroup #bookinformation: {
         $Type: 'UI.FieldGroupType',
         Data : [
             {
@@ -163,13 +164,14 @@ annotate service.Books with @(
                 Value: author_ID,
             },
         ],
-    },  
+    },
     UI.Facets                     : [{
         $Type : 'UI.ReferenceFacet',
-        ID    : 'GeneratedFacet1',
+        ID    : 'bookInfoFacet',
         Label : 'Book Information',
-        Target: '@UI.FieldGroup#GeneratedGroup1',
-    }, ],
+        Target: '@UI.FieldGroup#bookinformation',
+    }
+    ],
     UI.HeaderInfo                 : {
         TypeName      : 'Book',
         TypeNamePlural: 'Books',

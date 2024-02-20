@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Tue Feb 13 2024 17:22:46 GMT+0530 (India Standard Time)|
+|**Generation Date and Time**<br>Tue Feb 20 2024 16:37:00 GMT+0530 (India Standard Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
 |**App Generator Version**<br>1.12.1|
 |**Generation Platform**<br>Visual Studio Code|
@@ -9,10 +9,10 @@
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>http://localhost:4004/odata/v4/book-store/
 |**Module Name**<br>authors|
-|**Application Title**<br>authors|
+|**Application Title**<br>Authors|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.120.6|
+|**UI5 Version**<br>1.120.8|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|

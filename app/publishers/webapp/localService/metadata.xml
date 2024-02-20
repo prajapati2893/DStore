@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
-        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
-    </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
         <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
     </edmx:Reference>
@@ -268,7 +265,7 @@
                         </Record>
                     </Collection>
                 </Annotation>
-                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup1">
+                <Annotation Term="UI.FieldGroup" Qualifier="bookinformation">
                     <Record Type="UI.FieldGroupType">
                         <PropertyValue Property="Data">
                             <Collection>
@@ -309,15 +306,15 @@
                                 </Record>
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="Genre"/>
-                                    <PropertyValue Property="Value" Path="genre/name"/>
+                                    <PropertyValue Property="Value" Path="genre_ID"/>
                                 </Record>
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="Publisher"/>
-                                    <PropertyValue Property="Value" Path="publisher/name"/>
+                                    <PropertyValue Property="Value" Path="publisher_ID"/>
                                 </Record>
                                 <Record Type="UI.DataField">
                                     <PropertyValue Property="Label" String="Author"/>
-                                    <PropertyValue Property="Value" Path="author/name"/>
+                                    <PropertyValue Property="Value" Path="author_ID"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -326,9 +323,9 @@
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="ID" String="GeneratedFacet1"/>
+                            <PropertyValue Property="ID" String="bookInfoFacet"/>
                             <PropertyValue Property="Label" String="Book Information"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup1"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#bookinformation"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -343,63 +340,8 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <Annotation Term="UI.SelectionFields">
-                    <Collection/>
-                </Annotation>
-                <Annotation Term="UI.HeaderFacets">
-                    <Collection/>
-                </Annotation>
-                <Annotation Term="UI.FieldGroup" Qualifier="Title">
-                    <Record Type="UI.FieldGroupType">
-                        <PropertyValue Property="Data">
-                            <Collection/>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-                <Annotation Term="UI.SelectionPresentationVariant" Qualifier="tableView">
-                    <Record Type="UI.SelectionPresentationVariantType">
-                        <PropertyValue Property="PresentationVariant">
-                            <Record Type="UI.PresentationVariantType">
-                                <PropertyValue Property="Visualizations">
-                                    <Collection>
-                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
-                                    </Collection>
-                                </PropertyValue>
-                            </Record>
-                        </PropertyValue>
-                        <PropertyValue Property="SelectionVariant">
-                            <Record Type="UI.SelectionVariantType">
-                                <PropertyValue Property="SelectOptions">
-                                    <Collection/>
-                                </PropertyValue>
-                            </Record>
-                        </PropertyValue>
-                        <PropertyValue Property="Text" String="Books"/>
-                    </Record>
-                </Annotation>
             </Annotations>
             <Annotations Target="BookStoreService.EntityContainer/Books">
-                <Annotation Term="UI.SelectionPresentationVariant" Qualifier="tableView">
-                    <Record Type="UI.SelectionPresentationVariantType">
-                        <PropertyValue Property="PresentationVariant">
-                            <Record Type="UI.PresentationVariantType">
-                                <PropertyValue Property="Visualizations">
-                                    <Collection>
-                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
-                                    </Collection>
-                                </PropertyValue>
-                            </Record>
-                        </PropertyValue>
-                        <PropertyValue Property="SelectionVariant">
-                            <Record Type="UI.SelectionVariantType">
-                                <PropertyValue Property="SelectOptions">
-                                    <Collection/>
-                                </PropertyValue>
-                            </Record>
-                        </PropertyValue>
-                        <PropertyValue Property="Text" String="Books"/>
-                    </Record>
-                </Annotation>
                 <Annotation Term="Common.DraftRoot">
                     <Record Type="Common.DraftRootType">
                         <PropertyValue Property="ActivationAction" String="BookStoreService.draftActivate"/>
@@ -412,33 +354,37 @@
                 <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
             </Annotations>
             <Annotations Target="BookStoreService.Books/title">
-                <Annotation Term="Common.Label" String="Title"/>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
             </Annotations>
             <Annotations Target="BookStoreService.Books/publisher_ID">
+                <Annotation Term="Common.Text" Path="publisher/name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
                         <PropertyValue Property="CollectionPath" String="Publishers"/>
+                        <PropertyValue Property="Label" String="Publisher"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
-                                <Record Type="Common.ValueListParameterInOut">
+                                <Record Type="Common.ValueListParameterOut">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="publisher_ID"/>
                                     <PropertyValue Property="ValueListProperty" String="ID"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="name"/>
                                 </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="address"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="country_code"/>
-                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
                 </Annotation>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
             </Annotations>
             <Annotations Target="BookStoreService.Books/author_ID">
+                <Annotation Term="Common.Text" Path="author/name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
                         <PropertyValue Property="CollectionPath" String="Authors"/>
@@ -451,27 +397,24 @@
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="name"/>
                                 </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="country_code"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="birthDate"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="alive"/>
-                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
                 </Annotation>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
             </Annotations>
             <Annotations Target="BookStoreService.Books/genre_ID">
+                <Annotation Term="Common.Text" Path="genre/name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
                         <PropertyValue Property="CollectionPath" String="Genre"/>
+                        <PropertyValue Property="Label" String="Genre"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
-                                <Record Type="Common.ValueListParameterInOut">
+                                <Record Type="Common.ValueListParameterOut">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="genre_ID"/>
                                     <PropertyValue Property="ValueListProperty" String="ID"/>
                                 </Record>
@@ -482,6 +425,7 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
             </Annotations>
             <Annotations Target="BookStoreService.Books/currency">
                 <Annotation Term="Common.Label" String="{i18n>Currency}"/>
@@ -532,130 +476,7 @@
                                 <Annotations Target="BookStoreService.Books/DraftAdministrativeData">
                                     <Annotation Term="UI.Hidden" Bool="true"/>
                                 </Annotations>
-                                <Annotations Target="BookStoreService.Authors">
-                                    <Annotation Term="UI.LineItem" Qualifier="tableView">
-                                        <Collection>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Value" Path="name"/>
-                                            </Record>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Value" Path="birthDate"/>
-                                                <PropertyValue Property="Label" String="birthDate"/>
-                                            </Record>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Value" Path="alive"/>
-                                                <PropertyValue Property="Label" String="alive"/>
-                                            </Record>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Value" Path="deathDate"/>
-                                                <PropertyValue Property="Label" String="deathDate"/>
-                                            </Record>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Value" Path="country_code"/>
-                                            </Record>
-                                        </Collection>
-                                    </Annotation>
-                                    <Annotation Term="UI.SelectionPresentationVariant" Qualifier="tableView">
-                                        <Record Type="UI.SelectionPresentationVariantType">
-                                            <PropertyValue Property="PresentationVariant">
-                                                <Record Type="UI.PresentationVariantType">
-                                                    <PropertyValue Property="Visualizations">
-                                                        <Collection>
-                                                            <AnnotationPath>@UI.LineItem#tableView</AnnotationPath>
-                                                        </Collection>
-                                                    </PropertyValue>
-                                                </Record>
-                                            </PropertyValue>
-                                            <PropertyValue Property="SelectionVariant">
-                                                <Record Type="UI.SelectionVariantType">
-                                                    <PropertyValue Property="SelectOptions">
-                                                        <Collection/>
-                                                    </PropertyValue>
-                                                </Record>
-                                            </PropertyValue>
-                                            <PropertyValue Property="Text" String="Authors"/>
-                                        </Record>
-                                    </Annotation>
-                                    <Annotation Term="UI.LineItem">
-                                        <Collection>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Value" Path="name"/>
-                                            </Record>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Value" Path="country_code"/>
-                                            </Record>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Label" String="birthDate"/>
-                                                <PropertyValue Property="Value" Path="birthDate"/>
-                                            </Record>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Label" String="alive"/>
-                                                <PropertyValue Property="Value" Path="alive"/>
-                                            </Record>
-                                            <Record Type="UI.DataField">
-                                                <PropertyValue Property="Label" String="deathDate"/>
-                                                <PropertyValue Property="Value" Path="deathDate"/>
-                                            </Record>
-                                        </Collection>
-                                    </Annotation>
-                                    <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup1">
-                                        <Record Type="UI.FieldGroupType">
-                                            <PropertyValue Property="Data">
-                                                <Collection>
-                                                    <Record Type="UI.DataField">
-                                                        <PropertyValue Property="Value" Path="name"/>
-                                                    </Record>
-                                                    <Record Type="UI.DataField">
-                                                        <PropertyValue Property="Value" Path="country_code"/>
-                                                    </Record>
-                                                    <Record Type="UI.DataField">
-                                                        <PropertyValue Property="Label" String="birthDate"/>
-                                                        <PropertyValue Property="Value" Path="birthDate"/>
-                                                    </Record>
-                                                    <Record Type="UI.DataField">
-                                                        <PropertyValue Property="Label" String="alive"/>
-                                                        <PropertyValue Property="Value" Path="alive"/>
-                                                    </Record>
-                                                    <Record Type="UI.DataField">
-                                                        <PropertyValue Property="Label" String="deathDate"/>
-                                                        <PropertyValue Property="Value" Path="deathDate"/>
-                                                    </Record>
-                                                </Collection>
-                                            </PropertyValue>
-                                        </Record>
-                                    </Annotation>
-                                    <Annotation Term="UI.Facets">
-                                        <Collection>
-                                            <Record Type="UI.ReferenceFacet">
-                                                <PropertyValue Property="ID" String="GeneratedFacet1"/>
-                                                <PropertyValue Property="Label" String="General Information"/>
-                                                <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup1"/>
-                                            </Record>
-                                        </Collection>
-                                    </Annotation>
-                                </Annotations>
                                 <Annotations Target="BookStoreService.EntityContainer/Authors">
-                                    <Annotation Term="UI.SelectionPresentationVariant" Qualifier="tableView">
-                                        <Record Type="UI.SelectionPresentationVariantType">
-                                            <PropertyValue Property="PresentationVariant">
-                                                <Record Type="UI.PresentationVariantType">
-                                                    <PropertyValue Property="Visualizations">
-                                                        <Collection>
-                                                            <AnnotationPath>@UI.LineItem#tableView</AnnotationPath>
-                                                        </Collection>
-                                                    </PropertyValue>
-                                                </Record>
-                                            </PropertyValue>
-                                            <PropertyValue Property="SelectionVariant">
-                                                <Record Type="UI.SelectionVariantType">
-                                                    <PropertyValue Property="SelectOptions">
-                                                        <Collection/>
-                                                    </PropertyValue>
-                                                </Record>
-                                            </PropertyValue>
-                                            <PropertyValue Property="Text" String="Authors"/>
-                                        </Record>
-                                    </Annotation>
                                     <Annotation Term="Common.DraftRoot">
                                         <Record Type="Common.DraftRootType">
                                             <PropertyValue Property="ActivationAction" String="BookStoreService.draftActivate"/>
@@ -666,9 +487,6 @@
                                 </Annotations>
                                 <Annotations Target="BookStoreService.Authors/ID">
                                     <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
-                                </Annotations>
-                                <Annotations Target="BookStoreService.Authors/name">
-                                    <Annotation Term="Common.Label" String="Author Name"/>
                                 </Annotations>
                                 <Annotations Target="BookStoreService.Authors/country">
                                     <Annotation Term="Common.Label" String="{i18n>Country}"/>
@@ -707,66 +525,7 @@
                                                     <Annotations Target="BookStoreService.Authors/DraftAdministrativeData">
                                                         <Annotation Term="UI.Hidden" Bool="true"/>
                                                     </Annotations>
-                                                    <Annotations Target="BookStoreService.Publishers">
-                                                        <Annotation Term="UI.LineItem" Qualifier="tableView">
-                                                            <Collection>
-                                                                <Record Type="UI.DataField">
-                                                                    <PropertyValue Property="Value" Path="name"/>
-                                                                    <PropertyValue Property="Label" String="name"/>
-                                                                </Record>
-                                                                <Record Type="UI.DataField">
-                                                                    <PropertyValue Property="Value" Path="address"/>
-                                                                    <PropertyValue Property="Label" String="address"/>
-                                                                </Record>
-                                                                <Record Type="UI.DataField">
-                                                                    <PropertyValue Property="Value" Path="country_code"/>
-                                                                </Record>
-                                                            </Collection>
-                                                        </Annotation>
-                                                        <Annotation Term="UI.SelectionPresentationVariant" Qualifier="tableView">
-                                                            <Record Type="UI.SelectionPresentationVariantType">
-                                                                <PropertyValue Property="PresentationVariant">
-                                                                    <Record Type="UI.PresentationVariantType">
-                                                                        <PropertyValue Property="Visualizations">
-                                                                            <Collection>
-                                                                                <AnnotationPath>@UI.LineItem#tableView</AnnotationPath>
-                                                                            </Collection>
-                                                                        </PropertyValue>
-                                                                    </Record>
-                                                                </PropertyValue>
-                                                                <PropertyValue Property="SelectionVariant">
-                                                                    <Record Type="UI.SelectionVariantType">
-                                                                        <PropertyValue Property="SelectOptions">
-                                                                            <Collection/>
-                                                                        </PropertyValue>
-                                                                    </Record>
-                                                                </PropertyValue>
-                                                                <PropertyValue Property="Text" String="Publishers"/>
-                                                            </Record>
-                                                        </Annotation>
-                                                    </Annotations>
                                                     <Annotations Target="BookStoreService.EntityContainer/Publishers">
-                                                        <Annotation Term="UI.SelectionPresentationVariant" Qualifier="tableView">
-                                                            <Record Type="UI.SelectionPresentationVariantType">
-                                                                <PropertyValue Property="PresentationVariant">
-                                                                    <Record Type="UI.PresentationVariantType">
-                                                                        <PropertyValue Property="Visualizations">
-                                                                            <Collection>
-                                                                                <AnnotationPath>@UI.LineItem#tableView</AnnotationPath>
-                                                                            </Collection>
-                                                                        </PropertyValue>
-                                                                    </Record>
-                                                                </PropertyValue>
-                                                                <PropertyValue Property="SelectionVariant">
-                                                                    <Record Type="UI.SelectionVariantType">
-                                                                        <PropertyValue Property="SelectOptions">
-                                                                            <Collection/>
-                                                                        </PropertyValue>
-                                                                    </Record>
-                                                                </PropertyValue>
-                                                                <PropertyValue Property="Text" String="Publishers"/>
-                                                            </Record>
-                                                        </Annotation>
                                                         <Annotation Term="Common.DraftRoot">
                                                             <Record Type="Common.DraftRootType">
                                                                 <PropertyValue Property="ActivationAction" String="BookStoreService.draftActivate"/>
@@ -815,29 +574,8 @@
                                                                         <Annotations Target="BookStoreService.Publishers/DraftAdministrativeData">
                                                                             <Annotation Term="UI.Hidden" Bool="true"/>
                                                                         </Annotations>
-                                                                        <Annotations Target="BookStoreService.EntityContainer/Genre">
-                                                                            <Annotation Term="Capabilities.DeleteRestrictions">
-                                                                                <Record Type="Capabilities.DeleteRestrictionsType">
-                                                                                    <PropertyValue Property="Deletable" Bool="false"/>
-                                                                                </Record>
-                                                                            </Annotation>
-                                                                            <Annotation Term="Capabilities.InsertRestrictions">
-                                                                                <Record Type="Capabilities.InsertRestrictionsType">
-                                                                                    <PropertyValue Property="Insertable" Bool="false"/>
-                                                                                </Record>
-                                                                            </Annotation>
-                                                                            <Annotation Term="Capabilities.UpdateRestrictions">
-                                                                                <Record Type="Capabilities.UpdateRestrictionsType">
-                                                                                    <PropertyValue Property="Updatable" Bool="false"/>
-                                                                                </Record>
-                                                                            </Annotation>
-                                                                        </Annotations>
                                                                         <Annotations Target="BookStoreService.Genre/ID">
-                                                                            <Annotation Term="Common.Label" String="genre/ID"/>
                                                                             <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
-                                                                        </Annotations>
-                                                                        <Annotations Target="BookStoreService.Genre/name">
-                                                                            <Annotation Term="Common.Label" String="Genre"/>
                                                                         </Annotations>
                                                                         <Annotations Target="BookStoreService.Currencies">
                                                                             <Annotation Term="UI.Identification">
