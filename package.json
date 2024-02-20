@@ -18,12 +18,15 @@
     "start": "cds-serve",
     "watch-books": "cds watch --open books/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-authors": "cds watch --open authors/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-publishers": "cds watch --open publishers/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-publishers": "cds watch --open publishers/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-author": "cds watch --open author/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/books",
     "app/authors",
+    "app/publishers",
+    "app/author",
+    "app/authors",
     "app/publishers"
   ]
 }
-

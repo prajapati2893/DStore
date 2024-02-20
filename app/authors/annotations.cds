@@ -3,67 +3,72 @@ using BookStoreService as service from '../../srv/StoreService';
 annotate service.Authors with @(UI.LineItem: [
     {
         $Type: 'UI.DataField',
+        Label: 'Name',
         Value: name,
     },
     {
         $Type: 'UI.DataField',
-        Value: country_code,
+        Label: 'Country',
+        Value: country.name,
     },
     {
         $Type: 'UI.DataField',
-        Label: 'birthDate',
+        Label: 'Birth Date',
         Value: birthDate,
     },
     {
         $Type: 'UI.DataField',
-        Label: 'alive',
+        Label: 'Living',
         Value: alive,
     },
     {
         $Type: 'UI.DataField',
-        Label: 'deathDate',
+        Label: 'Died on',
         Value: deathDate,
     },
 ]);
 
 annotate service.Authors with @(
-    UI.FieldGroup #GeneratedGroup1: {
+    UI.FieldGroup #authorinformation: {
         $Type: 'UI.FieldGroupType',
         Data : [
             {
                 $Type: 'UI.DataField',
+                Label: 'Name',
                 Value: name,
             },
             {
                 $Type: 'UI.DataField',
-                Value: country_code,
+                Label: 'Country',
+                Value: country.name,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'birthDate',
+                Label: 'Birth Date',
                 Value: birthDate,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'alive',
+                Label: 'Alive',
                 Value: alive,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'deathDate',
+                Label: 'Death Date',
                 Value: deathDate,
             },
         ],
     },
     UI.Facets                     : [{
         $Type : 'UI.ReferenceFacet',
-        ID    : 'GeneratedFacet1',
-        Label : 'General Information',
-        Target: '@UI.FieldGroup#GeneratedGroup1',
-    }, ],
+        ID    : 'authorInformation',
+        Label : 'Author Information',
+        Target: '@UI.FieldGroup#authorinformation',
+    }
+    ],
     UI.HeaderInfo                 : {
-        TypeName      : 'author',
-        TypeNamePlural: 'authors',
+        TypeName      : 'Author',
+        TypeNamePlural: 'Authors',
         Title         : {Value: '{name}', },
     }
 );

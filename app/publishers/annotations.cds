@@ -4,17 +4,18 @@ annotate service.Publishers with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'name',
+            Label : 'Name',
             Value : name,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'address',
+            Label : 'Address',
             Value : address,
         },
         {
             $Type : 'UI.DataField',
-            Value : country_code,
+            Label : 'Country',
+            Value : country.name,
         },
     ]
 );
@@ -24,17 +25,18 @@ annotate service.Publishers with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'name',
+                Label : 'Name',
                 Value : name,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'address',
+                Label : 'Address',
                 Value : address,
             },
             {
                 $Type : 'UI.DataField',
-                Value : country_code,
+                Label : 'Country',
+                Value : country.name,
             },
         ],
     },
@@ -42,9 +44,9 @@ annotate service.Publishers with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            Label : 'Publisher Information',
             Target : '@UI.FieldGroup#GeneratedGroup1',
-        },
+        }
     ],
     UI.HeaderInfo                 : {
         TypeName      : 'publisher',
