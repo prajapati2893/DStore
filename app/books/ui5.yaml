@@ -1,4 +1,4 @@
 specVersion: "2.5"
 metadata:
-  name: msg.dstore.books.books
+  name: books
 type: application

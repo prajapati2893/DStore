@@ -35,7 +35,69 @@ annotate service.Books with @(UI.LineItem: [
         Value: published,
         Label: 'Published',
     },
-]);
+]){
+    author @(
+        Common: {
+            Text : author.name,
+            TextArrangement : #TextOnly,
+            ValueListWithFixedValues,
+            ValueList : {
+                CollectionPath : 'Authors',
+                Parameters: [{
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty:'author_ID',
+                    ValueListProperty: 'ID'
+                },{
+                    $Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'name',
+                }
+                ]
+            },
+        },
+    );
+    genre @(
+        Common: {
+            Text : genre.name,
+            TextArrangement : #TextOnly,
+            ValueListWithFixedValues,
+            ValueList : {
+                $Type : 'Common.ValueListType',
+                CollectionPath : 'Genre',
+                Label : 'Genre',
+                Parameters: [{
+                    $Type : 'Common.ValueListParameterOut',
+                    LocalDataProperty:'genre_ID',
+                    ValueListProperty: 'ID'
+                },{
+                    $Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'name',
+                },
+                ]
+            },
+        },
+    );
+    publisher @(
+        Common: {
+            Text : publisher.name,
+            TextArrangement : #TextOnly,
+            ValueListWithFixedValues,
+            ValueList : {
+                $Type : 'Common.ValueListType',
+                CollectionPath : 'Publishers',
+                Label : 'Publisher',
+                Parameters: [{
+                    $Type : 'Common.ValueListParameterOut',
+                    LocalDataProperty:'publisher_ID',
+                    ValueListProperty: 'ID'
+                },{
+                    $Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'name',
+                },
+                ]
+            },
+        },
+    );
+}
 
 annotate service.Books with @(
     UI.FieldGroup #GeneratedGroup1: {
@@ -88,20 +150,20 @@ annotate service.Books with @(
             {
                 $Type: 'UI.DataField',
                 Label: 'Genre',
-                Value: genre.name,
+                Value: genre_ID,
             },
             {
                 $Type: 'UI.DataField',
                 Label: 'Publisher',
-                Value: publisher.name,
+                Value: publisher_ID,
             },
             {
                 $Type: 'UI.DataField',
                 Label: 'Author',
-                Value: author.name,
+                Value: author_ID,
             },
         ],
-    },
+    },  
     UI.Facets                     : [{
         $Type : 'UI.ReferenceFacet',
         ID    : 'GeneratedFacet1',
@@ -112,56 +174,5 @@ annotate service.Books with @(
         TypeName      : 'Book',
         TypeNamePlural: 'Books',
         Title         : {Value: '{title}', },
-    }
-);
-
-annotate service.Books with @(UI.SelectionFields: []);
-
-annotate service.Books with {
-    title @Common.Label: 'Title'
-};
-
-annotate service.Authors with {
-    name @Common.Label: 'Author Name'
-};
-
-annotate service.Genre with {
-    ID @Common.Label: 'genre/ID'
-};
-
-annotate service.Genre with {
-    name @Common.Label: 'Genre'
-};
-
-annotate service.Books with @(
-    LineItem: [ {
-            Type: UI.DataFieldForAction,
-            Label: 'Back',
-            Value: 'my.namespace.BackAction'
-        }],
-    UI.HeaderFacets     : []);
-
-annotate service.Books with @(
-    UI.SelectionPresentationVariant #tableView : {
-        $Type : 'UI.SelectionPresentationVariantType',
-        PresentationVariant : {
-            $Type : 'UI.PresentationVariantType',
-            Visualizations : [
-                '@UI.LineItem',
-            ],
-        },
-        SelectionVariant : {
-            $Type : 'UI.SelectionVariantType',
-            SelectOptions : [
-            ],
-        },
-        Text : 'Books',
-    }
-);
-annotate service.Books with @(
-    UI.FieldGroup #test : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-        ],
     }
 );

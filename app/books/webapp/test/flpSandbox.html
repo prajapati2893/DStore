@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+<!-- Copyright (c) 2015 SAP AG, All Rights Reserved -->
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
@@ -42,10 +43,10 @@
                 }
             },
             applications: {
-                "msgdstorebooksbooks-tile": {
-                    title: "books",
-                    description: "book store",
-                    additionalInformation: "SAPUI5.Component=msg.dstore.books.books",
+                "books-tile": {
+                    title: "Books",
+                    description: "A Fiori application.",
+                    additionalInformation: "SAPUI5.Component=books",
                     applicationType: "URL",
                     url: "../"
                 }
@@ -53,17 +54,17 @@
         };
     </script>
 
-    <script src="https://sapui5.hana.ondemand.com/1.120.4/test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
+    <script src="https://sapui5.hana.ondemand.com/1.120.8/test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
     <!-- Bootstrap the UI5 core library -->
     <script id="sap-ui-bootstrap"
-        src="https://sapui5.hana.ondemand.com/1.120.4/resources/sap-ui-core.js"
+        src="https://sapui5.hana.ondemand.com/1.120.8/resources/sap-ui-core.js"
         data-sap-ui-libs=""
         data-sap-ui-async="true"
         data-sap-ui-preload="async"
         data-sap-ui-theme="sap_horizon"
         data-sap-ui-compatVersion="edge"
         data-sap-ui-language="en"
-        data-sap-ui-resourceroots='{"msg.dstore.books.books": "../"}'
+        data-sap-ui-resourceroots='{"books": "../"}'
         data-sap-ui-frameOptions="allow"> // NON-SECURE setting for testing environment
     </script>
 
