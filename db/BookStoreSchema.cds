@@ -3,11 +3,11 @@ using { Currency, Country, cuid } from '@sap/cds/common';
 namespace msg.dstore.books;
 
 entity Books: cuid {
-	title : String;
+	title : String @mandatory;
 	description : String;
-	publisher : association to one Publishers;
-	author : association to one Authors;
-	genre : association to one Genres;
+	publisher : association to one Publishers @mandatory;
+	author : association to one Authors @mandatory;
+	genre : association to one Genres @mandatory;
 	price : Decimal;
 	currency : Currency;
 	pages : Integer;

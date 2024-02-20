@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
-        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
-    </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
         <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
     </edmx:Reference>
@@ -20,14 +17,17 @@
                     <NavigationPropertyBinding Path="author" Target="Authors"/>
                     <NavigationPropertyBinding Path="genre" Target="Genre"/>
                     <NavigationPropertyBinding Path="currency" Target="Currencies"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Books"/>
                 </EntitySet>
                 <EntitySet Name="Authors" EntityType="BookStoreService.Authors">
                     <NavigationPropertyBinding Path="country" Target="Countries"/>
                     <NavigationPropertyBinding Path="books" Target="Books"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Authors"/>
                 </EntitySet>
                 <EntitySet Name="Publishers" EntityType="BookStoreService.Publishers">
                     <NavigationPropertyBinding Path="books" Target="Books"/>
                     <NavigationPropertyBinding Path="country" Target="Countries"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Publishers"/>
                 </EntitySet>
                 <EntitySet Name="Genre" EntityType="BookStoreService.Genre">
                     <NavigationPropertyBinding Path="books" Target="Books"/>
@@ -46,6 +46,7 @@
             <EntityType Name="Books">
                 <Key>
                     <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
                 </Key>
                 <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
                 <Property Name="title" Type="Edm.String"/>
@@ -73,10 +74,16 @@
                 <Property Name="coverImageType" Type="Edm.String"/>
                 <Property Name="content" Type="Edm.Stream"/>
                 <Property Name="contentType" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="BookStoreService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="BookStoreService.Books"/>
             </EntityType>
             <EntityType Name="Authors">
                 <Key>
                     <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
                 </Key>
                 <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
                 <Property Name="name" Type="Edm.String"/>
@@ -88,10 +95,16 @@
                 <Property Name="alive" Type="Edm.Boolean"/>
                 <Property Name="deathDate" Type="Edm.Date"/>
                 <NavigationProperty Name="books" Type="Collection(BookStoreService.Books)" Partner="author"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="BookStoreService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="BookStoreService.Authors"/>
             </EntityType>
             <EntityType Name="Publishers">
                 <Key>
                     <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
                 </Key>
                 <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
                 <Property Name="name" Type="Edm.String"/>
@@ -101,6 +114,11 @@
                     <ReferentialConstraint Property="country_code" ReferencedProperty="code"/>
                 </NavigationProperty>
                 <Property Name="country_code" Type="Edm.String" MaxLength="3"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="BookStoreService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="BookStoreService.Publishers"/>
             </EntityType>
             <EntityType Name="Genre">
                 <Key>
@@ -140,6 +158,19 @@
                     <ReferentialConstraint Property="code" ReferencedProperty="code"/>
                 </NavigationProperty>
             </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
             <EntityType Name="Currencies_texts">
                 <Key>
                     <PropertyRef Name="locale"/>
@@ -160,8 +191,71 @@
                 <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
                 <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
             </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Books"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="BookStoreService.Books"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Authors"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="BookStoreService.Authors"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Publishers"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="BookStoreService.Publishers"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Books"/>
+                <ReturnType Type="BookStoreService.Books"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Authors"/>
+                <ReturnType Type="BookStoreService.Authors"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Publishers"/>
+                <ReturnType Type="BookStoreService.Publishers"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Books"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="BookStoreService.Books"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Authors"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="BookStoreService.Authors"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="BookStoreService.Publishers"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="BookStoreService.Publishers"/>
+            </Action>
+            <Annotations Target="BookStoreService.EntityContainer/Books">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="BookStoreService.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="BookStoreService.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="BookStoreService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
             <Annotations Target="BookStoreService.Books/ID">
                 <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="BookStoreService.Books/title">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="BookStoreService.Books/publisher_ID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="BookStoreService.Books/author_ID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="BookStoreService.Books/genre_ID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
             </Annotations>
             <Annotations Target="BookStoreService.Books/currency">
                 <Annotation Term="Common.Label" String="{i18n>Currency}"/>
@@ -200,6 +294,97 @@
                                 <Annotations Target="BookStoreService.Books/contentType">
                                     <Annotation Term="Core.IsMediaType" Bool="true"/>
                                 </Annotations>
+                                <Annotations Target="BookStoreService.Books/IsActiveEntity">
+                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                </Annotations>
+                                <Annotations Target="BookStoreService.Books/HasActiveEntity">
+                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                </Annotations>
+                                <Annotations Target="BookStoreService.Books/HasDraftEntity">
+                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                </Annotations>
+                                <Annotations Target="BookStoreService.Books/DraftAdministrativeData">
+                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                </Annotations>
+                                <Annotations Target="BookStoreService.Authors">
+                                    <Annotation Term="UI.LineItem">
+                                        <Collection>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Value" Path="name"/>
+                                            </Record>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Value" Path="country_code"/>
+                                            </Record>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Label" String="birthDate"/>
+                                                <PropertyValue Property="Value" Path="birthDate"/>
+                                            </Record>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Label" String="alive"/>
+                                                <PropertyValue Property="Value" Path="alive"/>
+                                            </Record>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Label" String="deathDate"/>
+                                                <PropertyValue Property="Value" Path="deathDate"/>
+                                            </Record>
+                                        </Collection>
+                                    </Annotation>
+                                    <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup1">
+                                        <Record Type="UI.FieldGroupType">
+                                            <PropertyValue Property="Data">
+                                                <Collection>
+                                                    <Record Type="UI.DataField">
+                                                        <PropertyValue Property="Value" Path="name"/>
+                                                    </Record>
+                                                    <Record Type="UI.DataField">
+                                                        <PropertyValue Property="Value" Path="country_code"/>
+                                                    </Record>
+                                                    <Record Type="UI.DataField">
+                                                        <PropertyValue Property="Label" String="birthDate"/>
+                                                        <PropertyValue Property="Value" Path="birthDate"/>
+                                                    </Record>
+                                                    <Record Type="UI.DataField">
+                                                        <PropertyValue Property="Label" String="alive"/>
+                                                        <PropertyValue Property="Value" Path="alive"/>
+                                                    </Record>
+                                                    <Record Type="UI.DataField">
+                                                        <PropertyValue Property="Label" String="deathDate"/>
+                                                        <PropertyValue Property="Value" Path="deathDate"/>
+                                                    </Record>
+                                                </Collection>
+                                            </PropertyValue>
+                                        </Record>
+                                    </Annotation>
+                                    <Annotation Term="UI.Facets">
+                                        <Collection>
+                                            <Record Type="UI.ReferenceFacet">
+                                                <PropertyValue Property="ID" String="GeneratedFacet1"/>
+                                                <PropertyValue Property="Label" String="General Information"/>
+                                                <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup1"/>
+                                            </Record>
+                                        </Collection>
+                                    </Annotation>
+                                    <Annotation Term="UI.HeaderInfo">
+                                        <Record Type="UI.HeaderInfoType">
+                                            <PropertyValue Property="TypeName" String="author"/>
+                                            <PropertyValue Property="TypeNamePlural" String="authors"/>
+                                            <PropertyValue Property="Title">
+                                                <Record Type="UI.DataField">
+                                                    <PropertyValue Property="Value" String="{name}"/>
+                                                </Record>
+                                            </PropertyValue>
+                                        </Record>
+                                    </Annotation>
+                                </Annotations>
+                                <Annotations Target="BookStoreService.EntityContainer/Authors">
+                                    <Annotation Term="Common.DraftRoot">
+                                        <Record Type="Common.DraftRootType">
+                                            <PropertyValue Property="ActivationAction" String="BookStoreService.draftActivate"/>
+                                            <PropertyValue Property="EditAction" String="BookStoreService.draftEdit"/>
+                                            <PropertyValue Property="PreparationAction" String="BookStoreService.draftPrepare"/>
+                                        </Record>
+                                    </Annotation>
+                                </Annotations>
                                 <Annotations Target="BookStoreService.Authors/ID">
                                     <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
                                 </Annotations>
@@ -227,6 +412,83 @@
                                                         </Record>
                                                     </Annotation>
                                                     <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="BookStoreService.Authors/IsActiveEntity">
+                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                    </Annotations>
+                                                    <Annotations Target="BookStoreService.Authors/HasActiveEntity">
+                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                    </Annotations>
+                                                    <Annotations Target="BookStoreService.Authors/HasDraftEntity">
+                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                    </Annotations>
+                                                    <Annotations Target="BookStoreService.Authors/DraftAdministrativeData">
+                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                    </Annotations>
+                                                    <Annotations Target="BookStoreService.Publishers">
+                                                        <Annotation Term="UI.LineItem">
+                                                            <Collection>
+                                                                <Record Type="UI.DataField">
+                                                                    <PropertyValue Property="Label" String="name"/>
+                                                                    <PropertyValue Property="Value" Path="name"/>
+                                                                </Record>
+                                                                <Record Type="UI.DataField">
+                                                                    <PropertyValue Property="Label" String="address"/>
+                                                                    <PropertyValue Property="Value" Path="address"/>
+                                                                </Record>
+                                                                <Record Type="UI.DataField">
+                                                                    <PropertyValue Property="Value" Path="country_code"/>
+                                                                </Record>
+                                                            </Collection>
+                                                        </Annotation>
+                                                        <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup1">
+                                                            <Record Type="UI.FieldGroupType">
+                                                                <PropertyValue Property="Data">
+                                                                    <Collection>
+                                                                        <Record Type="UI.DataField">
+                                                                            <PropertyValue Property="Label" String="name"/>
+                                                                            <PropertyValue Property="Value" Path="name"/>
+                                                                        </Record>
+                                                                        <Record Type="UI.DataField">
+                                                                            <PropertyValue Property="Label" String="address"/>
+                                                                            <PropertyValue Property="Value" Path="address"/>
+                                                                        </Record>
+                                                                        <Record Type="UI.DataField">
+                                                                            <PropertyValue Property="Value" Path="country_code"/>
+                                                                        </Record>
+                                                                    </Collection>
+                                                                </PropertyValue>
+                                                            </Record>
+                                                        </Annotation>
+                                                        <Annotation Term="UI.Facets">
+                                                            <Collection>
+                                                                <Record Type="UI.ReferenceFacet">
+                                                                    <PropertyValue Property="ID" String="GeneratedFacet1"/>
+                                                                    <PropertyValue Property="Label" String="General Information"/>
+                                                                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup1"/>
+                                                                </Record>
+                                                            </Collection>
+                                                        </Annotation>
+                                                        <Annotation Term="UI.HeaderInfo">
+                                                            <Record Type="UI.HeaderInfoType">
+                                                                <PropertyValue Property="TypeName" String="publisher"/>
+                                                                <PropertyValue Property="TypeNamePlural" String="publishers"/>
+                                                                <PropertyValue Property="Title">
+                                                                    <Record Type="UI.DataField">
+                                                                        <PropertyValue Property="Value" String="{name}"/>
+                                                                    </Record>
+                                                                </PropertyValue>
+                                                            </Record>
+                                                        </Annotation>
+                                                    </Annotations>
+                                                    <Annotations Target="BookStoreService.EntityContainer/Publishers">
+                                                        <Annotation Term="Common.DraftRoot">
+                                                            <Record Type="Common.DraftRootType">
+                                                                <PropertyValue Property="ActivationAction" String="BookStoreService.draftActivate"/>
+                                                                <PropertyValue Property="EditAction" String="BookStoreService.draftEdit"/>
+                                                                <PropertyValue Property="PreparationAction" String="BookStoreService.draftPrepare"/>
+                                                            </Record>
+                                                        </Annotation>
                                                     </Annotations>
                                                     <Annotations Target="BookStoreService.Publishers/ID">
                                                         <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
@@ -256,22 +518,17 @@
                                                                         </Annotation>
                                                                         <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>
                                                                         </Annotations>
-                                                                        <Annotations Target="BookStoreService.EntityContainer/Genre">
-                                                                            <Annotation Term="Capabilities.DeleteRestrictions">
-                                                                                <Record Type="Capabilities.DeleteRestrictionsType">
-                                                                                    <PropertyValue Property="Deletable" Bool="false"/>
-                                                                                </Record>
-                                                                            </Annotation>
-                                                                            <Annotation Term="Capabilities.InsertRestrictions">
-                                                                                <Record Type="Capabilities.InsertRestrictionsType">
-                                                                                    <PropertyValue Property="Insertable" Bool="false"/>
-                                                                                </Record>
-                                                                            </Annotation>
-                                                                            <Annotation Term="Capabilities.UpdateRestrictions">
-                                                                                <Record Type="Capabilities.UpdateRestrictionsType">
-                                                                                    <PropertyValue Property="Updatable" Bool="false"/>
-                                                                                </Record>
-                                                                            </Annotation>
+                                                                        <Annotations Target="BookStoreService.Publishers/IsActiveEntity">
+                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="BookStoreService.Publishers/HasActiveEntity">
+                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="BookStoreService.Publishers/HasDraftEntity">
+                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="BookStoreService.Publishers/DraftAdministrativeData">
+                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
                                                                         </Annotations>
                                                                         <Annotations Target="BookStoreService.Genre/ID">
                                                                             <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
@@ -320,32 +577,63 @@
                                                                                                         <Annotation Term="Common.Text" Path="name"/>
                                                                                                         <Annotation Term="Common.Label" String="{i18n>CountryCode}"/>
                                                                                                         </Annotations>
-                                                                                                        <Annotations Target="BookStoreService.Currencies_texts/locale">
-                                                                                                            <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                        <Annotations Target="BookStoreService.DraftAdministrativeData">
+                                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
                                                                                                             </Annotations>
-                                                                                                            <Annotations Target="BookStoreService.Currencies_texts/name">
-                                                                                                                <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                            <Annotations Target="BookStoreService.DraftAdministrativeData/DraftUUID">
+                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                                                                                                                    <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
                                                                                                                 </Annotations>
-                                                                                                                <Annotations Target="BookStoreService.Currencies_texts/descr">
-                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                <Annotations Target="BookStoreService.DraftAdministrativeData/CreationDateTime">
+                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
                                                                                                                     </Annotations>
-                                                                                                                    <Annotations Target="BookStoreService.Currencies_texts/code">
-                                                                                                                        <Annotation Term="Common.Text" Path="name"/>
-                                                                                                                        <Annotation Term="Common.Label" String="{i18n>CurrencyCode}"/>
+                                                                                                                    <Annotations Target="BookStoreService.DraftAdministrativeData/CreatedByUser">
+                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
                                                                                                                         </Annotations>
-                                                                                                                        <Annotations Target="BookStoreService.Countries_texts/locale">
-                                                                                                                            <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                                        <Annotations Target="BookStoreService.DraftAdministrativeData/DraftIsCreatedByMe">
+                                                                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
                                                                                                                             </Annotations>
-                                                                                                                            <Annotations Target="BookStoreService.Countries_texts/name">
-                                                                                                                                <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                                            <Annotations Target="BookStoreService.DraftAdministrativeData/LastChangeDateTime">
+                                                                                                                                <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
                                                                                                                                 </Annotations>
-                                                                                                                                <Annotations Target="BookStoreService.Countries_texts/descr">
-                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                                <Annotations Target="BookStoreService.DraftAdministrativeData/LastChangedByUser">
+                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
                                                                                                                                     </Annotations>
-                                                                                                                                    <Annotations Target="BookStoreService.Countries_texts/code">
-                                                                                                                                        <Annotation Term="Common.Text" Path="name"/>
-                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>CountryCode}"/>
+                                                                                                                                    <Annotations Target="BookStoreService.DraftAdministrativeData/InProcessByUser">
+                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
                                                                                                                                         </Annotations>
-                                                                                                                                    </Schema>
-                                                                                                                                </edmx:DataServices>
-                                                                                                                            </edmx:Edmx>
+                                                                                                                                        <Annotations Target="BookStoreService.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                                                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                                                                                                            </Annotations>
+                                                                                                                                            <Annotations Target="BookStoreService.Currencies_texts/locale">
+                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                                                                </Annotations>
+                                                                                                                                                <Annotations Target="BookStoreService.Currencies_texts/name">
+                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                                                                    </Annotations>
+                                                                                                                                                    <Annotations Target="BookStoreService.Currencies_texts/descr">
+                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                                                        </Annotations>
+                                                                                                                                                        <Annotations Target="BookStoreService.Currencies_texts/code">
+                                                                                                                                                            <Annotation Term="Common.Text" Path="name"/>
+                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CurrencyCode}"/>
+                                                                                                                                                            </Annotations>
+                                                                                                                                                            <Annotations Target="BookStoreService.Countries_texts/locale">
+                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                                                                                </Annotations>
+                                                                                                                                                                <Annotations Target="BookStoreService.Countries_texts/name">
+                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                                                                                    </Annotations>
+                                                                                                                                                                    <Annotations Target="BookStoreService.Countries_texts/descr">
+                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                                                                        </Annotations>
+                                                                                                                                                                        <Annotations Target="BookStoreService.Countries_texts/code">
+                                                                                                                                                                            <Annotation Term="Common.Text" Path="name"/>
+                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CountryCode}"/>
+                                                                                                                                                                            </Annotations>
+                                                                                                                                                                        </Schema>
+                                                                                                                                                                    </edmx:DataServices>
+                                                                                                                                                                </edmx:Edmx>
