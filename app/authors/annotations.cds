@@ -64,11 +64,30 @@ annotate service.Authors with @(
         ID    : 'authorInformation',
         Label : 'Author Information',
         Target: '@UI.FieldGroup#authorinformation',
-    }
-    ],
+    },
+    {
+        $Type : 'UI.ReferenceFacet',
+        Label : 'Other Books',
+        ID : 'OtherBooks',
+        Target : 'books/@UI.LineItem#OtherBooks',
+    } ],
     UI.HeaderInfo                 : {
         TypeName      : 'Author',
         TypeNamePlural: 'Authors',
         Title         : {Value: '{name}', },
     }
+);
+annotate service.Books with @(
+    UI.LineItem #OtherBooks : [
+        {
+            $Type: 'UI.DataField',
+            Label: 'Title',
+            Value: title
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Description',
+            Value: description
+        }
+    ]
 );
