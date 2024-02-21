@@ -46,11 +46,32 @@ annotate service.Publishers with @(
             ID : 'GeneratedFacet1',
             Label : 'Publisher Information',
             Target : '@UI.FieldGroup#GeneratedGroup1',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Other books',
+            ID : 'Otherbooks',
+            Target : 'books/@UI.LineItem#Otherbooks',
         }
     ],
     UI.HeaderInfo                 : {
-        TypeName      : 'publisher',
-        TypeNamePlural: 'publishers',
+        TypeName      : 'Publisher',
+        TypeNamePlural: 'Publishers',
         Title         : {Value: '{name}', },
     }
+);
+
+annotate service.Books with @(
+    UI.LineItem #Otherbooks : [
+        {
+            $Type: 'UI.DataField',
+            Label: 'Title',
+            Value: title,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Description',
+            Value: description,
+        }
+    ]
 );
