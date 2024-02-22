@@ -133,7 +133,22 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Books"
+              "contextPath": "/Books",
+              "content": {
+                "body": {
+                  "sections": {
+                    "RatingFragment": {
+                      "template": "books.ext.fragment.RatingFragment",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "bookInfoFacet"
+                      },
+                      "title": "Rating",
+                      "type": "XMLFragment"
+                    }
+                  }
+                }
+              }
             }
           }
         }

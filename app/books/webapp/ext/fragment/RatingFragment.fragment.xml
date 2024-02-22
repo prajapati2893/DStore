@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
+	<VBox id="rating">
+		<RatingIndicator core:require="{ handler: 'books/ext/fragment/RatingFragment'}" id="RI_default" maxValue="5" class="sapUiResponsiveMargin" value="4" tooltip="Rating Tooltip" change="handler.onRatingChanged"/>
+	</VBox>
+</core:FragmentDefinition>
