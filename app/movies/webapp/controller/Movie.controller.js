@@ -33,7 +33,6 @@ sap.ui.define([
             },
             onMovieItemPressed: function(event){
                 //this function should reuse already defined functions
-                console.log('movie pressed')
                 let item = event.getParameter("listItem")// get item which fired press event
                 let context = item.getBindingContext()
                 this.getRouter().navTo("movie",{
@@ -45,6 +44,9 @@ sap.ui.define([
                 this.getRouter().navTo("director",{
                     directorId : context.getProperty('director/ID')
                 })
+            },
+            onRatingChanged: function(event){
+                console.log(event.getParameter("value"))
             }
         });
     }

@@ -24,8 +24,12 @@
                     <ObjectAttribute id="_IDGenObjectAttribute4" title="Genre" text="{genre/name}" />
                     <ObjectAttribute id="_IDGenObjectAttribute5" title="Release Date" text="{releaseDate}" />
                     <ObjectAttribute id="_IDGenObjectAttribute6" title="Duration" text="{duration} mins" />
+					<ObjectAttribute id='rating'>
+					</ObjectAttribute>
 				</attributes>
 			</ObjectHeader>
+			<RatingIndicator id="RI_default" maxValue="5" class="sapUiResponsiveMargin" value="4" tooltip="Rating Tooltip" change="onRatingChanged"/>
+
 			<Table 
             id="_IDGenTable1" 
             width="auto" 
