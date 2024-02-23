@@ -16,6 +16,7 @@ entity Books: cuid {
 	coverImageType: String @Core.IsMediaType;
 	content: LargeBinary @Core.MediaType: contentType;
 	contentType: String @Core.IsMediaType;
+	rating: Integer
 };
 
 entity Publishers: cuid{

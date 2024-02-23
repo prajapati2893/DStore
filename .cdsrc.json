@@ -1,1 +1,7 @@
-{}
+{
+    "cds": {
+      "fiori": {
+        "bypass_draft": true
+      }
+    }
+}

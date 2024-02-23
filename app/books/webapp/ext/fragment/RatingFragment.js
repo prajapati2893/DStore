@@ -5,7 +5,11 @@ sap.ui.define([
 
     return {
         onRatingChanged: function(oEvent) {
-            MessageToast.show("Custom handler invoked.");
+            MessageToast.show("Rating Updated");
+        },
+        onReset: function(oEvent){
+            let model = oEvent.getSource().getBindingContext().getModel()
+            // console.log(model.bindContext("/Books/msg.dstore.resetRating(...)").execute())
         }
     };
 });

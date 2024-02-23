@@ -1,12 +1,12 @@
 
-ID,title,description,director_ID,genre_ID,releaseDate,duration,
-e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,Inception,Sci-Fi thriller directed by Christopher Nolan,27bba48e-050a-4a12-b27c-4bfb7ea25d45,c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce,2010-07-16,148,
-53b35636-1f85-4c25-bb07-f510fd2d6a2d,Pulp Fiction,Crime film directed by Quentin Tarantino,eb3c143a-9a44-4d23-8a24-86b9e21fda9b,eb3c143a-9a44-4d23-8a24-86b9e21fda9b,1994-10-14,154,
-0b47c69e-9b13-496b-9b14-8a4b62f2a35d,Spirited Away,Animated fantasy film directed by Hayao Miyazaki,c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce,27bba48e-050a-4a12-b27c-4bfb7ea25d45,2001-07-20,125,
-7e297935-5ea5-43a2-a619-6bb93eaab3a8,The Dark Knight,Superhero film directed by Christopher Nolan,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"365550b3-d239-4f68-b4b1-24a9969d8505",2008-07-18,152,
-c9d8afac-d059-41db-88cd-cc165cb3b601,Forrest Gump,Drama film directed by Robert Zemeckis,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d",1994-07-06,142,
-6f1867e0-88a9-4d36-8e50-cb741dd8efac,The Shawshank Redemption,Drama film directed by Frank Darabont,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d",1994-09-23,142,
-dd7b6097-bb58-4cda-89e2-55bc4c7d7741,The Matrix,Sci-Fi film directed by Lana and Lilly Wachowski,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce",1999-03-31,136,
-365550b3-d239-4f68-b4b1-24a9969d8505,The Godfather,Crime film directed by Francis Ford Coppola,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"eb3c143a-9a44-4d23-8a24-86b9e21fda9b",1972-03-24,175,
-bf150120-8b4c-42e1-8bc7-e8f0b9078ab5,The Lord of the Rings: The Return of the King,Fantasy film directed by Peter Jackson,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,,"bf150120-8b4c-42e1-8bc7-e8f0b9078ab5",2003-12-17,201,
-f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d,The Dark Knight Rises,Superhero film directed by Christopher Nolan,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"365550b3-d239-4f68-b4b1-24a9969d8505",2012-07-20,165,
+ID,title,description,director_ID,genre_ID,releaseDate,duration,rating
+e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,Inception,Sci-Fi thriller directed by Christopher Nolan,27bba48e-050a-4a12-b27c-4bfb7ea25d45,c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce,2010-07-16,148,5
+53b35636-1f85-4c25-bb07-f510fd2d6a2d,Pulp Fiction,Crime film directed by Quentin Tarantino,eb3c143a-9a44-4d23-8a24-86b9e21fda9b,eb3c143a-9a44-4d23-8a24-86b9e21fda9b,1994-10-14,154,4
+0b47c69e-9b13-496b-9b14-8a4b62f2a35d,Spirited Away,Animated fantasy film directed by Hayao Miyazaki,c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce,27bba48e-050a-4a12-b27c-4bfb7ea25d45,2001-07-20,125,3
+7e297935-5ea5-43a2-a619-6bb93eaab3a8,The Dark Knight,Superhero film directed by Christopher Nolan,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"365550b3-d239-4f68-b4b1-24a9969d8505",2008-07-18,152,2
+c9d8afac-d059-41db-88cd-cc165cb3b601,Forrest Gump,Drama film directed by Robert Zemeckis,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d",1994-07-06,142,1
+6f1867e0-88a9-4d36-8e50-cb741dd8efac,The Shawshank Redemption,Drama film directed by Frank Darabont,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d",1994-09-23,142,3
+dd7b6097-bb58-4cda-89e2-55bc4c7d7741,The Matrix,Sci-Fi film directed by Lana and Lilly Wachowski,53b35636-1f85-4c25-bb07-f510fd2d6a2d,"c7f92a8d-7f8e-4b3f-9f8a-6ef823b52dce",1999-03-31,136,4
+365550b3-d239-4f68-b4b1-24a9969d8505,The Godfather,Crime film directed by Francis Ford Coppola,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"eb3c143a-9a44-4d23-8a24-86b9e21fda9b",1972-03-24,175,2
+bf150120-8b4c-42e1-8bc7-e8f0b9078ab5,The Lord of the Rings: The Return of the King,Fantasy film directed by Peter Jackson,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"bf150120-8b4c-42e1-8bc7-e8f0b9078ab5",2003-12-17,201,4
+f73ad6a1-0df8-4e96-b22f-8d5b37d8ec0d,The Dark Knight Rises,Superhero film directed by Christopher Nolan,e4b5e80b-2e44-4fc1-b468-33ec2dd58f77,"365550b3-d239-4f68-b4b1-24a9969d8505",2012-07-20,165,2

@@ -28,7 +28,8 @@
 					</ObjectAttribute>
 				</attributes>
 			</ObjectHeader>
-			<RatingIndicator id="RI_default" maxValue="5" class="sapUiResponsiveMargin" value="4" tooltip="Rating Tooltip" change="onRatingChanged"/>
+			<Label id="ratingLabel" text="Rating :" class="sapUiResponsiveMargin"></Label>
+			<RatingIndicator id="RI_default" maxValue="5" class="sapUiResponsiveMargin" value="{rating}" tooltip="Rating Tooltip" change="onRatingChanged"/>
 
 			<Table 
             id="_IDGenTable1" 
