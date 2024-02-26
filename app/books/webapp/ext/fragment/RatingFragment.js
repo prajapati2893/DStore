@@ -8,8 +8,16 @@ sap.ui.define([
             MessageToast.show("Rating Updated");
         },
         onReset: function(oEvent){
-            let model = oEvent.getSource().getBindingContext().getModel()
-            // console.log(model.bindContext("/Books/msg.dstore.resetRating(...)").execute())
+            let context = oEvent.getSource().getBindingContext()
+            let id = context.getProperty("ID")
+            let model = context.getModel()
+            let path = `/Books(ID=${id},IsActiveEntity=true)/BookStoreService.resetRating(...)`
+            model.bindContext(path).execute()
+            .then(()=>{
+                MessageToast.show("Rating reset");
+            }).catch((error)=>{
+                MessageToast.show("Error: "+error);
+            })
         }
     };
 });
