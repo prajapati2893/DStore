@@ -1,5 +1,4 @@
 //custom logic for the service can be written here
-// https://cap.cloud.sap/docs/node.js/core-services#srv-on-before-after
 const cds = require('@sap/cds')
 module.exports = function(){
   this.on (`resetRating`, `Books`,async(req) =>{
