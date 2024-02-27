@@ -28,5 +28,15 @@
     "app/author",
     "app/authors",
     "app/publishers"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "db":{
+        "kind": "sqlite",
+        "credentials": {
+          "url":":memory:"
+        }
+      }
+    }
+  }
 }

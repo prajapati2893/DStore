@@ -12,6 +12,7 @@ entity Movies: cuid{
     duration: Integer;
     posterImage: LargeBinary @Core.MediaType: posterImageType;
     posterImageType: String @Core.IsMediaType;
+    rating: Integer
 }
 
 // To implement many-to-many relationship between Movies and Actors.

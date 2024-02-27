@@ -9,30 +9,34 @@
             window['sap-ushell-config'] = {
                 defaultRenderer: 'fiori2',
                 applications: {
-                    "books-app": {
+                    "books-manage": {
                         title: 'Books',
                         description: 'Books store',
+                        additionalInformation: "SAPUI5.Component=books",
                         applicationType: 'URL',
                         url: "./books/webapp",
                         navigationMode: 'embedded'
                     },
-                    "authors-app":{
+                    "authors-manage":{ // authors is semantic object and display is action
                         title: 'Authors',
                         description: 'Authors store',
+                        additionalInformation: "SAPUI5.Component=authors",
                         applicationType: 'URL',
                         url: "./authors/webapp",
                         navigationMode: 'embedded'
                     },
-                    "publishers-app":{
+                    "publishers-manage":{
                         title: 'Publishers',
                         description: 'Publishers store',
+                        additionalInformation: "SAPUI5.Component=publishers",
                         applicationType: 'URL',
                         url: "./publishers/webapp",
                         navigationMode: 'embedded'
                     },
-                    "movies-app":{
+                    "movies-manage":{
                         title: 'Movies',
                         description: 'Movies store',
+                        additionalInformation: "SAPUI5.Component=movies",
                         applicationType: 'URL',
                         url: "./movies/webapp",
                         navigationMode: 'embedded'
