@@ -106,6 +106,11 @@ annotate service.Books with @(
         Data : [
             {
                 $Type: 'UI.DataField',
+                Label: 'ID',
+                Value: ID,
+            },
+            {
+                $Type: 'UI.DataField',
                 Label: 'Title',
                 Value: title,
             },
@@ -154,15 +159,29 @@ annotate service.Books with @(
                 Value: genre_ID,
             },
             {
-                $Type: 'UI.DataField',
+                $Type: 'UI.DataFieldWithIntentBasedNavigation',
                 Label: 'Publisher',
                 Value: publisher_ID,
+                SemanticObject: 'publishers',
+                Action: 'manage',
+                Mapping: [{
+                    $Type: 'Common.SemanticObjectMappingType',
+                    LocalProperty: publisher_ID,
+                    SemanticObjectProperty: 'ID'
+                }]
             },
             {
-                $Type: 'UI.DataField',
+                $Type: 'UI.DataFieldWithIntentBasedNavigation',
                 Label: 'Author',
                 Value: author_ID,
-            },
+                SemanticObject: 'authors',
+                Action: 'manage',
+                Mapping: [{
+                    $Type: 'Common.SemanticObjectMappingType',
+                    LocalProperty: author_ID,
+                    SemanticObjectProperty: 'ID'
+                }]
+            }
         ],
     },
     UI.Facets                     : [{
