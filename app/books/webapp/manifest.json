@@ -115,9 +115,9 @@
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "columns": {
-                    "DataField::title": {
+                    "DataField::description": {
                       "availability": "Default",
-                      "width": "auto"
+                      "width": "30em"
                     }
                   }
                 }

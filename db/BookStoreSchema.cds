@@ -16,23 +16,32 @@ entity Books: cuid {
 	coverImageType: String @Core.IsMediaType;
 	content: LargeBinary @Core.MediaType: contentType;
 	contentType: String @Core.IsMediaType;
-	rating: Integer
+	rating: Integer;
+	criticality: Integer = case
+							when price < 20 then 3
+							when price < 30 then 0
+							else 1
+							end
 };
 
 entity Publishers: cuid{
-	name : String;
+	name : String @Common.Label:'Name';
 	address : String;
 	books : association to many Books on books.publisher = $self;
 	country : Country;
 };
 
 entity Authors: cuid{
-	name : String;
+	name : String @Common.Label:'Name';
 	country: Country;
 	birthDate: Date;
 	alive : Boolean;
 	deathDate: Date;
 	books: association to many Books on books.author = $self;
+	criticality: Integer = case
+							when alive = true then 3
+							else 1
+							end
 };
 
 entity Genres: cuid{

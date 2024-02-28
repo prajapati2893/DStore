@@ -3,82 +3,81 @@ using BookStoreService as service from '../../srv/StoreService';
 annotate service.Authors with @(UI.LineItem: [
     {
         $Type: 'UI.DataField',
-        Label: 'Name',
+        Label: '{i18n>textName}',
         Value: name,
     },
     {
         $Type: 'UI.DataField',
-        Label: 'Country',
+        Label: '{i18n>textCountry}',
         Value: country.name,
     },
     {
         $Type: 'UI.DataField',
-        Label: 'Birth Date',
+        Label: '{i18n>textBirthDate}',
         Value: birthDate,
     },
     {
         $Type: 'UI.DataField',
-        Label: 'Living',
+        Label: '{i18n>textAlive}',
         Value: alive,
+        Criticality: criticality
     },
     {
         $Type: 'UI.DataField',
-        Label: 'Died on',
+        Label: '{i18n>textDeathOn}',
         Value: deathDate,
     },
 ]);
-
 annotate service.Authors with @(
     UI.FieldGroup #authorinformation: {
         $Type: 'UI.FieldGroupType',
         Data : [
             {
                 $Type: 'UI.DataField',
-                Label: 'ID',
+                Label: '{i18n>textId}',
                 Value: ID,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Name',
+                Label: '{i18n>textName}',
                 Value: name,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Country',
+                Label: '{i18n>textCountry}',
                 Value: country.name,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Birth Date',
+                Label: '{i18n>textBirthDate}',
                 Value: birthDate,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Alive',
-                Value: alive,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Death Date',
+                Label: '{i18n>textDeathOn}',
                 Value: deathDate,
+                @UI.Hidden: {$edmJson: {$Eq: [
+                    {$Path: 'alive'},
+                    true
+                ]}},
             },
         ],
     },
     UI.Facets                     : [{
         $Type : 'UI.ReferenceFacet',
         ID    : 'authorInformation',
-        Label : 'Author Information',
+        Label : '{i18n>textAuthorInformation}',
         Target: '@UI.FieldGroup#authorinformation',
     },
     {
         $Type : 'UI.ReferenceFacet',
-        Label : 'Other Books',
+        Label : '{i18n>textOtherBooks}',
         ID : 'OtherBooks',
         Target : 'books/@UI.LineItem#OtherBooks',
     } ],
     UI.HeaderInfo                 : {
-        TypeName      : 'Author',
-        TypeNamePlural: 'Authors',
+        TypeName      : '{i18n>textHeaderInfoAuthor}',
+        TypeNamePlural: '{i18n>textHeaderInfoAuthors}',
         Title         : {Value: '{name}', },
     }
 );
@@ -86,12 +85,12 @@ annotate service.Books with @(
     UI.LineItem #OtherBooks : [
         {
             $Type: 'UI.DataField',
-            Label: 'Title',
+            Label: '{i18n>textTitle}',
             Value: title
         },
         {
             $Type: 'UI.DataField',
-            Label: 'Description',
+            Label: '{i18n>textDescription}',
             Value: description
         }
     ]

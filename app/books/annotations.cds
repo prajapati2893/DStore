@@ -4,18 +4,20 @@ using from '../../db/BookStoreSchema.cds';
 annotate service.Books with @(UI.LineItem: [
     {
         $Type: 'UI.DataField',
-        Label: 'Title',
+        Label: '{i18n>textTitle}',
         Value: title,
     },
     {
         $Type: 'UI.DataField',
-        Label: 'Description',
+        Label: '{i18n>textDescription}',
         Value: description,
     },
     {
         $Type: 'UI.DataField',
-        Label: 'Price',
+        Label: '{i18n>textPrice}',
         Value: price,
+        Criticality: criticality,
+        CriticalityRepresentation : #WithoutIcon
     },
     {
         $Type: 'UI.DataField',
@@ -23,18 +25,18 @@ annotate service.Books with @(UI.LineItem: [
     },
     {
         $Type: 'UI.DataField',
-        Label: 'Pages',
+        Label: '{i18n>textPage}',
         Value: pages,
     },
     {
         $Type: 'UI.DataField',
         Value: author.name,
-        Label: 'Author',
+        Label: '{i18n>textAuthor}',
     },
     {
         $Type: 'UI.DataField',
         Value: published,
-        Label: 'Published',
+        Label: '{i18n>textPublished}',
     },
 ]){
     author @(
@@ -64,7 +66,6 @@ annotate service.Books with @(UI.LineItem: [
             ValueList : {
                 $Type : 'Common.ValueListType',
                 CollectionPath : 'Genre',
-                Label : 'Genre',
                 Parameters: [{
                     $Type : 'Common.ValueListParameterOut',
                     LocalDataProperty:'genre_ID',
@@ -85,7 +86,6 @@ annotate service.Books with @(UI.LineItem: [
             ValueList : {
                 $Type : 'Common.ValueListType',
                 CollectionPath : 'Publishers',
-                Label : 'Publisher',
                 Parameters: [{
                     $Type : 'Common.ValueListParameterOut',
                     LocalDataProperty:'publisher_ID',
@@ -106,27 +106,27 @@ annotate service.Books with @(
         Data : [
             {
                 $Type: 'UI.DataField',
-                Label: 'ID',
+                Label: '{i18n>textId}',
                 Value: ID,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Title',
+                Label: '{i18n>textTitle}',
                 Value: title,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Cover Image',
+                Label: '{i18n>textCoverImage}',
                 Value: coverImage,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Description',
+                Label: '{i18n>textDescription}',
                 Value: description,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Price',
+                Label: '{i18n>textPrice}',
                 Value: price,
             },
             {
@@ -135,32 +135,27 @@ annotate service.Books with @(
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Pages',
+                Label: '{i18n>textPage}',
                 Value: pages,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Published',
+                Label: '{i18n>textPublished}',
                 Value: published,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Cover Image',
-                Value: coverImage,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Content',
+                Label: '{i18n>textContent}',
                 Value: content,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'Genre',
+                Label: '{i18n>textGenre}',
                 Value: genre_ID,
             },
             {
                 $Type: 'UI.DataFieldWithIntentBasedNavigation',
-                Label: 'Publisher',
+                Label: '{i18n>textPublisher}',
                 Value: publisher_ID,
                 SemanticObject: 'publishers',
                 Action: 'manage',
@@ -172,7 +167,7 @@ annotate service.Books with @(
             },
             {
                 $Type: 'UI.DataFieldWithIntentBasedNavigation',
-                Label: 'Author',
+                Label: '{i18n>textAuthor}',
                 Value: author_ID,
                 SemanticObject: 'authors',
                 Action: 'manage',
@@ -192,8 +187,8 @@ annotate service.Books with @(
     }
     ],
     UI.HeaderInfo                 : {
-        TypeName      : 'Book',
-        TypeNamePlural: 'Books',
+        TypeName      : '{i18n>textHeaderInfoBook}',
+        TypeNamePlural: '{i18n>textHeaderInfoBooks}',
         Title         : {Value: '{title}', },
     }
 );
