@@ -134,8 +134,7 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "columns": {
                     "DataField::name": {
-                      "availability": "Default",
-                      "width": "auto"
+                      "availability": "Default"
                     }
                   }
                 }

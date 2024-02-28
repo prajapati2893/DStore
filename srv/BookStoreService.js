@@ -12,4 +12,8 @@ module.exports = function(){
       req.data.description = "This is a default description"
     }
   })
+
+  this.after(`READ`,`Authors`,authors=>{
+    //
+  })
 }

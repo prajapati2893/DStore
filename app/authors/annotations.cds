@@ -20,6 +20,7 @@ annotate service.Authors with @(UI.LineItem: [
         $Type: 'UI.DataField',
         Label: '{i18n>textAlive}',
         Value: alive,
+        Criticality: criticality
     },
     {
         $Type: 'UI.DataField',
@@ -27,7 +28,6 @@ annotate service.Authors with @(UI.LineItem: [
         Value: deathDate,
     },
 ]);
-
 annotate service.Authors with @(
     UI.FieldGroup #authorinformation: {
         $Type: 'UI.FieldGroupType',
@@ -54,13 +54,12 @@ annotate service.Authors with @(
             },
             {
                 $Type: 'UI.DataField',
-                Label: '{i18n>textAlive}',
-                Value: alive,
-            },
-            {
-                $Type: 'UI.DataField',
                 Label: '{i18n>textDeathOn}',
                 Value: deathDate,
+                @UI.Hidden: {$edmJson: {$Eq: [
+                    {$Path: 'alive'},
+                    true
+                ]}},
             },
         ],
     },

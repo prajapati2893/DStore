@@ -16,6 +16,8 @@ annotate service.Books with @(UI.LineItem: [
         $Type: 'UI.DataField',
         Label: '{i18n>textPrice}',
         Value: price,
+        Criticality: criticality,
+        CriticalityRepresentation : #WithoutIcon
     },
     {
         $Type: 'UI.DataField',
