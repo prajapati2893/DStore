@@ -82,10 +82,6 @@
           "bundleName": "movies.i18n.i18n"
         }
       },
-      "@i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "uri": "i18n/i18n.properties"
-      },
       "": {
         "dataSource": "mainService",
         "preload": true,
