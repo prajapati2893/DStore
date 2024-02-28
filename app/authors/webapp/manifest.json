@@ -33,8 +33,14 @@
           "action": "manage",
           "title": "{{flpTitle}}",
           "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
+            "parameters": {
+              "IsActiveEntity": {
+                "defaultValue": {
+                  "value": "true"
+                }
+              }
+            },
+            "additionalParameters": "ignored"
           }
         }
       }

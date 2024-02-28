@@ -20,14 +20,14 @@ entity Books: cuid {
 };
 
 entity Publishers: cuid{
-	name : String;
+	name : String @Common.Label:'Name';
 	address : String;
 	books : association to many Books on books.publisher = $self;
 	country : Country;
 };
 
 entity Authors: cuid{
-	name : String;
+	name : String @Common.Label:'Name';
 	country: Country;
 	birthDate: Date;
 	alive : Boolean;
