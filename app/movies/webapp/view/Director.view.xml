@@ -18,9 +18,9 @@
 				title=""
 				backgroundDesign="Solid">
 				<attributes>
-					<ObjectAttribute id="_IDGenObjectAttribute1" title="Name" text="{name}" />
-					<ObjectAttribute id="_IDGenObjectAttribute2" title="Birth Date" text="{birthDate}" />
-					<ObjectAttribute id="_IDGenObjectAttribute3" title="Country" text="{country/name}" />
+					<ObjectAttribute id="_IDGenObjectAttribute1" title="{i18n>textName}" text="{name}" />
+					<ObjectAttribute id="_IDGenObjectAttribute2" title="{i18n>textBirthDate}" text="{birthDate}" />
+					<ObjectAttribute id="_IDGenObjectAttribute3" title="{i18n>textCountry}" text="{country/name}" />
 				</attributes>
 			</ObjectHeader>
             <Table id="_IDOtherMovies" width="auto" class="sapUiResponsiveMargin"
@@ -31,23 +31,23 @@
                 <headerToolbar>
 					<OverflowToolbar id="_IDGenOverflowToolbar2">
 						<content>
-							<Title id="_IDGenTitle2" text="Movies by {name}" level="H2"/>
+							<Title id="_IDGenTitle2" text="{i18n>textMoviesBy} {name}" level="H2"/>
 							<ToolbarSpacer id="_IDGenToolbarSpacer3" />
 						</content>
 					</OverflowToolbar>
 				</headerToolbar>
                  <columns>
 					<Column id="_IDGenColumnOM1">
-						<Text id="_IDGenTextOM1" text="Title" />
+						<Text id="_IDGenTextOM1" text="{i18n>textTitle}" />
 					</Column>
 					<Column id="_IDGenColumnOM2">
-						<Text id="_IDGenTextOM2" text="Description" />
+						<Text id="_IDGenTextOM2" text="{i18n>textDescription}" />
 					</Column>
                     <Column id="_IDGenColumnOM3">
-						<Text id="_IDGenTextOM3" text="Genre" />
+						<Text id="_IDGenTextOM3" text="{i18n>textGenre}" />
 					</Column>
                     <Column id="_IDGenColumnOM4">
-						<Text id="_IDGenTextOM4" text="Release Date" />
+						<Text id="_IDGenTextOM4" text="{i18n>textReleaseDate}" />
 					</Column>
 				</columns>
                 <items>

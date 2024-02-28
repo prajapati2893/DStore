@@ -18,17 +18,17 @@
 				title=""
 				backgroundDesign="Solid">
 				<attributes>
-					<ObjectAttribute id="_IDGenObjectAttribute1" title="Name" text="{title}" />
-					<ObjectAttribute id="_IDGenObjectAttribute2" title="Description" text="{description}" />
-					<ObjectAttribute id="_IDGenObjectAttribute3" title="Director" text="{director/name}" active="true" press="onDirectorPressed"/>
-                    <ObjectAttribute id="_IDGenObjectAttribute4" title="Genre" text="{genre/name}" />
-                    <ObjectAttribute id="_IDGenObjectAttribute5" title="Release Date" text="{releaseDate}" />
-                    <ObjectAttribute id="_IDGenObjectAttribute6" title="Duration" text="{duration} mins" />
+					<ObjectAttribute id="_IDGenObjectAttribute1" title="{i18n>textName}" text="{title}" />
+					<ObjectAttribute id="_IDGenObjectAttribute2" title="{i18n>textDescription}" text="{description}" />
+					<ObjectAttribute id="_IDGenObjectAttribute3" title="{i18n>textDirector}" text="{director/name}" active="true" press="onDirectorPressed"/>
+                    <ObjectAttribute id="_IDGenObjectAttribute4" title="{i18n>textGenres}" text="{genre/name}" />
+                    <ObjectAttribute id="_IDGenObjectAttribute5" title="{i18n>textReleaseDate}" text="{releaseDate}" />
+                    <ObjectAttribute id="_IDGenObjectAttribute6" title="{i18n>textDuration}" text="{duration} mins" />
 					<ObjectAttribute id='rating'>
 					</ObjectAttribute>
 				</attributes>
 			</ObjectHeader>
-			<Label id="ratingLabel" text="Rating :" class="sapUiResponsiveMargin"></Label>
+			<Label id="ratingLabel" text="{i18n>textRating} :" class="sapUiResponsiveMargin"></Label>
 			<RatingIndicator id="RI_default" maxValue="5" class="sapUiResponsiveMargin" value="{rating}" tooltip="Rating Tooltip" change="onRatingChanged"/>
 
 			<Table 
@@ -46,17 +46,17 @@
                 <headerToolbar>
 					<OverflowToolbar id="_IDGenOverflowToolbar1">
 						<content>
-							<Title id="_IDGenTitle1" text="Actors" level="H2"/>
+							<Title id="_IDGenTitle1" text="{i18n>textActor}" level="H2"/>
 							<ToolbarSpacer id="_IDGenToolbarSpacer1" />
 						</content>
 					</OverflowToolbar>
 				</headerToolbar>
                 <columns>
 					<Column id="_IDGenColumn1">
-						<Text id="_IDGenText1" text="Name" />
+						<Text id="_IDGenText1" text="{i18n>textName}" />
 					</Column>
 					<Column id="_IDGenColumn2">
-						<Text id="_IDGenText2" text="Country" />
+						<Text id="_IDGenText2" text="{i18n>textCountry}" />
 					</Column>
 				</columns>
                 <items>
@@ -78,20 +78,20 @@
                 <headerToolbar>
 					<OverflowToolbar id="_IDGenOverflowToolbar2">
 						<content>
-							<Title id="_IDGenTitle2" text="Other movies from {director/name}" level="H2"/>
+							<Title id="_IDGenTitle2" text="{i18n>textOtherMovies} {director/name}" level="H2"/>
 							<ToolbarSpacer id="_IDGenToolbarSpacer3" />
 						</content>
 					</OverflowToolbar>
 				</headerToolbar>
                  <columns>
 					<Column id="_IDGenColumnOM1">
-						<Text id="_IDGenTextOM1" text="Title" />
+						<Text id="_IDGenTextOM1" text="{i18n>textTitle}" />
 					</Column>
 					<Column id="_IDGenColumnOM2">
-						<Text id="_IDGenTextOM2" text="Genre" />
+						<Text id="_IDGenTextOM2" text="{i18n>textGenre}" />
 					</Column>
                     <Column id="_IDGenColumnOM3">
-						<Text id="_IDGenTextOM3" text="Release Date" />
+						<Text id="_IDGenTextOM3" text="{i18n>textReleaseDate}" />
 					</Column>
 				</columns>
                 <items>

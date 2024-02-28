@@ -20,35 +20,35 @@
 				<headerToolbar>
 					<OverflowToolbar id="_IDGenOverflowToolbar1">
 						<content>
-							<Title id="_IDGenTitle1" text="Movies" level="H2"/>
+							<Title id="_IDGenTitle1" text="{i18n>appTitle}" level="H2"/>
 							<ToolbarSpacer id="_IDGenToolbarSpacer1" />
 						</content>
 					</OverflowToolbar>
 				</headerToolbar>
 				<columns>
 					<Column id="_IDGenColumn1">
-						<Text id="_IDGenText1" text="Title" />
+						<Text id="_IDGenText1" text="{i18n>textTitle}" />
 					</Column>
 					<Column id="_IDGenColumn2"
 						demandPopin="true">
-						<Text id="_IDGenText2" text="Description" />
+						<Text id="_IDGenText2" text="{i18n>textDescription}" />
 					</Column>
 					<Column id="_IDGenColumn3"
 						demandPopin="true"
 						hAlign="End">
-						<Text id="_IDGenText3" text="Director" />
+						<Text id="_IDGenText3" text="{i18n>textDirector}" />
 					</Column>
 					<Column id="_IDGenColumn4"
 						width="12em">
-						<Text id="_IDGenText4" text="Genre" />
+						<Text id="_IDGenText4" text="{i18n>textGenre}" />
 					</Column>
 					<Column id="_IDGenColumn5"
 						width="12em">
-						<Text id="_IDGenText5" text="Release Date" />
+						<Text id="_IDGenText5" text="{i18n>textReleaseDate}" />
 					</Column>
 					<Column id="_IDGenColumn6"
 						width="12em">
-						<Text id="_IDGenText61" text="Duration" />
+						<Text id="_IDGenText61" text="{i18n>textDuration}" />
 					</Column>
 				</columns>
 				<items>
