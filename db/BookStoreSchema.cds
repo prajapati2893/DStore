@@ -4,6 +4,7 @@ namespace msg.dstore.books;
 
 entity Books @(restrict:[
 	{grant: 'READ', to: 'GUEST'},
+	{grant: ['READ','UPDATE'], to: 'USER'},
 	{grant: '*' , to: 'ADMIN'}
 ]): cuid {
 	title : String @mandatory;

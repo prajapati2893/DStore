@@ -14,12 +14,16 @@
           "kind": "basic",
           "users": {
             "bob":{
-              "password": "123",
+              "password": "bob",
               "roles": ["ADMIN"]
             },
             "alice":{
-              "password": "qwe",
+              "password": "alice",
               "roles": ["GUEST"]
+            },
+            "fred":{
+              "password": "fred",
+              "roles": ["USER"]
             }
           }
         }
