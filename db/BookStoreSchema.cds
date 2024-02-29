@@ -30,6 +30,7 @@ entity Books @(restrict:[
 
 entity Publishers @(restrict:[
 	{grant: 'READ', to: 'GUEST'},
+	{grant: ['READ','UPDATE'], to: 'USER'},
 	{grant: '*' , to: 'ADMIN'}
 ]): cuid{
 	name : String @Common.Label:'Name';
@@ -40,6 +41,7 @@ entity Publishers @(restrict:[
 
 entity Authors @(restrict:[
 	{grant: 'READ', to: 'GUEST'},
+	{grant: ['READ','UPDATE'], to: 'USER'},
 	{grant: '*' , to: 'ADMIN'}
 ]): cuid{
 	name : String @Common.Label:'Name';
