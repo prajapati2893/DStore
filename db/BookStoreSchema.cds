@@ -2,7 +2,10 @@ using { Currency, Country, cuid } from '@sap/cds/common';
 
 namespace msg.dstore.books;
 
-entity Books: cuid {
+entity Books @(restrict:[
+	{grant: 'READ', to: 'GUEST'},
+	{grant: '*' , to: 'ADMIN'}
+]): cuid {
 	title : String @mandatory;
 	description : String;
 	publisher : association to one Publishers @mandatory;
@@ -24,14 +27,20 @@ entity Books: cuid {
 							end
 };
 
-entity Publishers: cuid{
+entity Publishers @(restrict:[
+	{grant: 'READ', to: 'GUEST'},
+	{grant: '*' , to: 'ADMIN'}
+]): cuid{
 	name : String @Common.Label:'Name';
 	address : String;
 	books : association to many Books on books.publisher = $self;
 	country : Country;
 };
 
-entity Authors: cuid{
+entity Authors @(restrict:[
+	{grant: 'READ', to: 'GUEST'},
+	{grant: '*' , to: 'ADMIN'}
+]): cuid{
 	name : String @Common.Label:'Name';
 	country: Country;
 	birthDate: Date;
@@ -44,6 +53,7 @@ entity Authors: cuid{
 							end
 };
 
+@readonly
 entity Genres: cuid{
 	name: String;
 	books: association to many Books on books.genre = $self;

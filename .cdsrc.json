@@ -2,6 +2,27 @@
     "cds": {
       "fiori": {
         "bypass_draft": true
+      },
+      "requires": {
+        "db":{
+          "kind": "sqlite",
+          "credentials": {
+            "url":":memory:"
+          }
+        },
+        "auth":{
+          "kind": "basic",
+          "users": {
+            "bob":{
+              "password": "123",
+              "roles": ["ADMIN"]
+            },
+            "alice":{
+              "password": "qwe",
+              "roles": ["GUEST"]
+            }
+          }
+        }
       }
     }
 }
