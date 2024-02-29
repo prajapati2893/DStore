@@ -2,7 +2,10 @@ using {cuid, Country} from '@sap/cds/common';
 
 namespace msg.dstore.movies;
 
-entity Movies: cuid{
+entity Movies@(restrict:[
+	{grant: 'READ', to: 'GUEST'},
+	{grant: '*' , to: 'ADMIN'}
+]): cuid{
     title: String;
     description: String;
     director: association to one Directors;
@@ -20,20 +23,27 @@ entity LinkTable{
     key movie: association to Movies;
     key actor: association to Actors;
 }
-entity Directors: cuid{
+entity Directors@(restrict:[
+	{grant: 'READ', to: 'GUEST'},
+	{grant: '*' , to: 'ADMIN'}
+]): cuid{
     name: String;
     birthDate: Date;
     country: Country;
     movies: association to many Movies on movies.director = $self;
 }
 
-entity Actors: cuid{
+entity Actors@(restrict:[
+	{grant: 'READ', to: 'GUEST'},
+	{grant: '*' , to: 'ADMIN'}
+]): cuid{
     name: String;
     birthDate: String;
     country: Country;
     movies: Composition of many LinkTable on movies.actor = $self;
 }
 
+@readonly
 entity Genres: cuid{
     name: String;
     movies : Association to many Movies on movies.genre = $self;
