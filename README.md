@@ -28,6 +28,7 @@ service.cds file is importing the exposed service in the app directory.
 
 
 **Useful Links:**
+
 manifest descriptor
 https://sapui5.hana.ondemand.com/sdk/#/topic/be0cf40f61184b358b5faedaec98b2da
 
