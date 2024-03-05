@@ -21,6 +21,7 @@ entity Books @(restrict:[
 	content: LargeBinary @Core.MediaType: contentType;
 	contentType: String @Core.IsMediaType;
 	rating: Integer;
+	//computed property
 	criticality: Integer = case
 							when price < 20 then 3
 							when price < 30 then 0

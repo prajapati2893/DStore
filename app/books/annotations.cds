@@ -1,6 +1,7 @@
 using BookStoreService as service from '../../srv/StoreService';
 using from '../../db/BookStoreSchema.cds';
 
+//Line item for rendering the table
 annotate service.Books with @(UI.LineItem: [
     {
         $Type: 'UI.DataField',
@@ -17,7 +18,7 @@ annotate service.Books with @(UI.LineItem: [
         Label: '{i18n>textPrice}',
         Value: price,
         Criticality: criticality,
-        CriticalityRepresentation : #WithoutIcon
+        CriticalityRepresentation : #WithoutIcon //showing the data in different colors of criticality
     },
     {
         $Type: 'UI.DataField',
@@ -39,6 +40,7 @@ annotate service.Books with @(UI.LineItem: [
         Label: '{i18n>textPublished}',
     },
 ]){
+    //creating a dropdown (value list) for authors
     author @(
         Common: {
             Text : author.name,
@@ -48,7 +50,7 @@ annotate service.Books with @(UI.LineItem: [
                 CollectionPath : 'Authors',
                 Parameters: [{
                     $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty:'author_ID',
+                    LocalDataProperty:'author_ID', //author_ID in books entity is mapped to ID in authors entity
                     ValueListProperty: 'ID'
                 },{
                     $Type: 'Common.ValueListParameterDisplayOnly',
@@ -58,6 +60,7 @@ annotate service.Books with @(UI.LineItem: [
             },
         },
     );
+    //creating dropdown(value list) for genre entity
     genre @(
         Common: {
             Text : genre.name,
@@ -78,6 +81,7 @@ annotate service.Books with @(UI.LineItem: [
             },
         },
     );
+    //creating dropdown(value list) for publishers entity
     publisher @(
         Common: {
             Text : publisher.name,
@@ -153,6 +157,7 @@ annotate service.Books with @(
                 Label: '{i18n>textGenre}',
                 Value: genre_ID,
             },
+            //navigation link for publisher page
             {
                 $Type: 'UI.DataFieldWithIntentBasedNavigation',
                 Label: '{i18n>textPublisher}',
@@ -165,6 +170,7 @@ annotate service.Books with @(
                     SemanticObjectProperty: 'ID'
                 }]
             },
+            //navigation link for author page
             {
                 $Type: 'UI.DataFieldWithIntentBasedNavigation',
                 Label: '{i18n>textAuthor}',

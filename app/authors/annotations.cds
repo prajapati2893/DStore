@@ -1,5 +1,6 @@
 using BookStoreService as service from '../../srv/StoreService';
 
+//Line item is for rendering a table
 annotate service.Authors with @(UI.LineItem: [
     {
         $Type: 'UI.DataField',
@@ -28,7 +29,10 @@ annotate service.Authors with @(UI.LineItem: [
         Value: deathDate,
     },
 ]);
+
 annotate service.Authors with @(
+
+    //a group of entities
     UI.FieldGroup #authorinformation: {
         $Type: 'UI.FieldGroupType',
         Data : [
@@ -63,6 +67,7 @@ annotate service.Authors with @(
             },
         ],
     },
+    //sections on the page
     UI.Facets                     : [{
         $Type : 'UI.ReferenceFacet',
         ID    : 'authorInformation',
