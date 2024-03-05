@@ -21,6 +21,7 @@ entity Books @(restrict:[
 	content: LargeBinary @Core.MediaType: contentType;
 	contentType: String @Core.IsMediaType;
 	rating: Integer;
+	//computed property
 	criticality: Integer = case
 							when price < 20 then 3
 							when price < 30 then 0
@@ -30,6 +31,7 @@ entity Books @(restrict:[
 
 entity Publishers @(restrict:[
 	{grant: 'READ', to: 'GUEST'},
+	{grant: ['READ','UPDATE'], to: 'USER'},
 	{grant: '*' , to: 'ADMIN'}
 ]): cuid{
 	name : String @Common.Label:'Name';
@@ -40,6 +42,7 @@ entity Publishers @(restrict:[
 
 entity Authors @(restrict:[
 	{grant: 'READ', to: 'GUEST'},
+	{grant: ['READ','UPDATE'], to: 'USER'},
 	{grant: '*' , to: 'ADMIN'}
 ]): cuid{
 	name : String @Common.Label:'Name';

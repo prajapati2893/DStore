@@ -9,7 +9,7 @@ entity Movies@(restrict:[
     title: String;
     description: String;
     director: association to one Directors;
-    actors: composition of many LinkTable on actors.movie = $self;
+    actors: composition of many LinkTable on actors.movie = $self; //many to many relationship
     genre: association to one Genres;
     releaseDate: Date;
     duration: Integer;
@@ -40,7 +40,7 @@ entity Actors@(restrict:[
     name: String;
     birthDate: String;
     country: Country;
-    movies: Composition of many LinkTable on movies.actor = $self;
+    movies: Composition of many LinkTable on movies.actor = $self; //many to many relationship
 }
 
 @readonly

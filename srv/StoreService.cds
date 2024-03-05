@@ -4,7 +4,7 @@ using {msg.dstore.movies as movieSchema} from '../db/MovieStoreSchema';
 
 @impl: './BookStoreService.js' //provides custom logics of the service
 service BookStoreService{
-    @odata.draft.enabled
+    @odata.draft.enabled //enabling the draft functionality
     entity Books as projection on bookSchema.Books 
     actions { 
         // bound action specific to Books entity
